@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetsBemEstar - Cuidando do seu pet com amor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+   
+    <header class="header">
+        <div></div>
+        <div class="header-center">
+            <img src="logo.png" alt="PetsBemEstar Logo" class="header-logo">
+            <span class="header-title">PetsBemEstar</span>
+        </div>
+        <div class="header-actions">
+            <a href="cadastro.html" class="header-link">Cadastre-se</a>
+            <a href="login.html" class="header-button">login</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <h1 class="main-title">AnimalsZoo</h1>
+                    <p class="hero-subtitle">O melhor cuidado para seu pet, com amor e dedicação profissional.</p>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link active">Início</a></li>
+                        <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+                        <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                        <li><a href="contato.html" class="nav-link">Contato</a></li>
+                    </ul>
+                </nav>
+                <div class="hero-cta">
+                    <a href="cadastro.html" class="btn btn-primary btn-large">Cadastre-se já</a>
+                </div>
+                <div class="search-container">
+                    <div class="search-box">
+                        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <input type="text" placeholder="Pesquise..." class="search-input">
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-container">
+                    <img src="animais.avif" alt="Pets felizes no AnimalsZoo" class="hero-img">
+                    <div class="floating-element floating-heart">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
+                    <div class="floating-element floating-star">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="mobileNav" class="mobile-nav">
+            <a href="index.html" class="mobile-nav-link active">Início</a>
+            <a href="servicos.html" class="mobile-nav-link">Serviços</a>
+            <a href="sobre.html" class="mobile-nav-link">Sobre</a>
+            <a href="contato.html" class="mobile-nav-link">Contato</a>
+        </div>
+        <section class="advantages">
+            <div class="section-header">
+                <h2 class="section-title">Nossas vantagens</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-image">
+                        <img src="veterinaria.avif" alt="Cuidado Especializado">
+                    </div>
+                    <div class="advantage-content">
+                        <div class="advantage-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                        </div>
+                        <h3 class="advantage-title">Cuidado Especializado</h3>
+                        <p class="advantage-description">Profissionais qualificados para o melhor cuidado do seu pet</p>
+                    </div>
+                </div>
+
+                <div class="advantage-card">
+                    <div class="advantage-image">
+                        <img src="gatoseguro3-jpg.webp" alt="Segurança Garantida">
+                    </div>
+                    <div class="advantage-content">
+                        <div class="advantage-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3 class="advantage-title">Segurança Garantida</h3>
+                        <p class="advantage-description">Ambiente seguro e monitorado 24 horas por dia</p>
+                    </div>
+                </div>
+
+                <div class="advantage-card">
+                    <div class="advantage-image">
+                        <img src="atendimento.webp" alt="Horário Flexível">
+                    </div>
+                    <div class="advantage-content">
+                        <div class="advantage-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                        </div>
+                        <h3 class="advantage-title">Horário Flexível</h3>
+                        <p class="advantage-description">Atendimento em horários que se adequam à sua rotina</p>
+                    </div>
+                </div>
+
+                <div class="advantage-card">
+                    <div class="advantage-image">
+                        <img src="pets diferentes.png" alt="Equipe Experiente">
+                    </div>
+                    <div class="advantage-content">
+                        <div class="advantage-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3 class="advantage-title">Equipe Experiente</h3>
+                        <p class="advantage-description">Mais de 10 anos de experiência no cuidado animal</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Serviços Section -->
+        <section class="services">
+            <div class="services-container">
+                <div class="section-header">
+                    <h2 class="section-title">Nossos Serviços</h2>
+                    <p class="section-subtitle">Tudo que seu pet precisa em um só lugar</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-image">
+                            <img src="hotel2.jpg" alt="Hospedagem">
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Hospedagem</h3>
+                            <p class="service-description">Hotel para pets com todo conforto e carinho</p>
+                            <div class="service-footer">
+                                <span class="service-price">A partir de R$ 50/dia</span>
+                                <button class="btn btn-small">Agendar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-image">
+                            <img src="day.jpg" alt="Day Care">
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Day Care</h3>
+                            <p class="service-description">Cuidados durante o dia enquanto você trabalha</p>
+                            <div class="service-footer">
+                                <span class="service-price">A partir de R$ 30/dia</span>
+                                <button class="btn btn-small">Agendar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-image">
+                            <img src="banho-e-tosa.jpg" alt="Banho e Tosa">
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Banho e Tosa</h3>
+                            <p class="service-description">Serviços de higiene e estética para seu pet</p>
+                            <div class="service-footer">
+                                <span class="service-price">A partir de R$ 40</span>
+                                <button class="btn btn-small">Agendar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-image">
+                            <img src="consulta.avif" alt="Consultas Veterinárias">
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Consultas Veterinárias</h3>
+                            <p class="service-description">Atendimento veterinário especializado</p>
+                            <div class="service-footer">
+                                <span class="service-price">A partir de R$ 80</span>
+                                <button class="btn btn-small">Agendar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="testimonials">
+            <div class="section-header">
+                <h2 class="section-title">O que nossos clientes dizem</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="client-info">
+                            <img src="maria login.avif" alt="Maria Silva" class="client-photo">
+                            <div>
+                                <h4 class="client-name">Maria Silva</h4>
+                                <p class="client-pet">Rex - Golden Retriever</p>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Excelente atendimento! Meu cachorro adora ficar aqui."</p>
+                        <div class="pet-photo-container">
+                            <img src="rex.jpeg" alt="Pet Rex" class="pet-photo">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="client-info">
+                            <img src="joao.webp" alt="João Santos" class="client-photo">
+                            <div>
+                                <h4 class="client-name">João Santos</h4>
+                                <p class="client-pet">Luna - Gato Persa</p>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Profissionais muito cuidadosos e carinhosos com os animais."</p>
+                        <div class="pet-photo-container">
+                            <img src="luna.jpg" alt="Pet Luna" class="pet-photo">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="client-info">
+                            <img src="ana.jpg" alt="Ana Costa" class="client-photo">
+                            <div>
+                                <h4 class="client-name">Ana Costa</h4>
+                                <p class="client-pet">Buddy - Labrador</p>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"Recomendo para todos que precisam de cuidados para seus pets."</p>
+                        <div class="pet-photo-container">
+                            <img src="buddy.jpg" alt="Pet Buddy" class="pet-photo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <div class="section-header">
+                <h2 class="section-title">Nossa Galeria</h2>
+                <p class="section-subtitle">Veja nossos pets felizes em ação</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="ani1.jpg" alt="Galeria foto 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="ani2.webp" alt="Galeria foto 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="ani3.jpg" alt="Galeria foto 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="ani4.jpeg" alt="Galeria foto 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="ani5.jpg" alt="Galeria foto 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="ani6.jpg" alt="Galeria foto 6">
+                </div>
+                <div class="gallery-item">
+                    <img src="ani8.jpg" alt="Galeria foto 7">
+                </div>
+                <div class="gallery-item">
+                    <img src="ani8.jpeg" alt="Galeria foto 8">
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="PetsBemEstar Logo" class="footer-logo-img">
+                        <h3 class="footer-title">PetsBemEstar</h3>
+                    </div>
+                    <p class="footer-description">Cuidando do seu pet com amor e dedicação há mais de 10 anos.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-heading">Serviços</h4>
+                    <ul class="footer-list">
+                        <li>Hospedagem</li>
+                        <li>Day Care</li>
+                        <li>Banho e Tosa</li>
+                        <li>Consultas Veterinárias</li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-heading">Links Úteis</h4>
+                    <ul class="footer-list">
+                        <li><a href="sobre.html">Sobre Nós</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Privacidade</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4 class="footer-heading">Contato</h4>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span>Rua dos Pets, 123 - São Paulo</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                            <span>(11) 9999-9999</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <span>contato@petsbemestar.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 PetsBemEstar. Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços - PetsBemEstar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="background: linear-gradient(135deg, #fef3e2, #fef3c7);">
+    
+    <header class="header">
+        <div></div>
+        <div class="header-center">
+            <img src="logo.png" alt="PetsBemEstar Logo" class="header-logo">
+            <span class="header-title">PetsBemEstar</span>
+        </div>
+        <div class="header-actions">
+            <a href="login.html" class="header-link">Login</a>
+            <a href="cadastro.html" class="header-button">Cadastre-se</Cadastre-se></a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="container" style="padding-top: 2rem;">
+     
+        <div class="page-header">
+            <a href="index.html" class="back-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </a>
+            <div>
+                <h1 class="page-title">Nossos Serviços</h1>
+                <p class="page-subtitle">Oferecemos uma ampla gama de serviços para cuidar do seu pet</p>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="servicos.html" class="nav-link active">Serviços</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="contato.html" class="nav-link">Contato</a></li>
+            </ul>
+        </nav>
+
+        <div id="mobileNav" class="mobile-nav">
+            <a href="index.html" class="mobile-nav-link">Início</a>
+            <a href="servicos.html" class="mobile-nav-link active">Serviços</a>
+            <a href="sobre.html" class="mobile-nav-link">Sobre</a>
+            <a href="contato.html" class="mobile-nav-link">Contato</a>
+        </div>
+
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 1.5rem; margin-bottom: 2rem;">
+            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
+                <div style="position: relative;">
+                    <svg style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: #9ca3af;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input type="text" placeholder="Buscar serviços..." class="form-input" style="padding-left: 2.5rem;">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <select class="form-input">
+                        <option>Todos os Serviços</option>
+                        <option>Veterinário</option>
+                        <option>Estética</option>
+                        <option>Cuidados</option>
+                    </select>
+                    
+                    <button class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        Agendar Agora
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="services-grid" style="margin-bottom: 3rem;">
+           
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="veterinaria.avif" alt="Consulta Veterinária">
+                </div>
+                <div class="service-content">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                        <h3 class="service-title">Consulta Veterinária</h3>
+                        <span class="service-price">R$ 80</span>
+                    </div>
+                    <p class="service-description">Consulta completa com veterinário especializado</p>
+                    
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.875rem;">
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <span>45 min</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #fbbf24;">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                            </svg>
+                            <span style="font-weight: 600;">4.9</span>
+                            <span style="color: #6b7280;">(127)</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="width: 100%;">Agendar Serviço</button>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="banho-e-tosa.jpg" alt="Banho e Tosa Completa">
+                </div>
+                <div class="service-content">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                        <h3 class="service-title">Banho e Tosa Completa</h3>
+                        <span class="service-price">R$ 60</span>
+                    </div>
+                    <p class="service-description">Banho, tosa, corte de unhas e limpeza de ouvidos</p>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.875rem;">
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <span>2h</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #fbbf24;">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                            </svg>
+                            <span style="font-weight: 600;">4.8</span>
+                            <span style="color: #6b7280;">(89)</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="width: 100%;">Agendar Serviço</button>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="day.jpg" alt="Day Care">
+                </div>
+                <div class="service-content">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                        <h3 class="service-title">Day Care</h3>
+                        <span class="service-price">R$ 45/dia</span>
+                    </div>
+                    <p class="service-description">Cuidados durante o dia com atividades e socialização</p>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.875rem;">
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <span>8h</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #fbbf24;">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                            </svg>
+                            <span style="font-weight: 600;">4.7</span>
+                            <span style="color: #6b7280;">(156)</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="width: 100%;">Agendar Serviço</button>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="hotel2.jpg" alt="Hospedagem">
+                </div>
+                <div class="service-content">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                        <h3 class="service-title">Hospedagem</h3>
+                        <span class="service-price">R$ 80/dia</span>
+                    </div>
+                    <p class="service-description">Hotel para pets com acompanhamento 24h</p>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.875rem;">
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <span>24h</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #fbbf24;">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                            </svg>
+                            <span style="font-weight: 600;">4.9</span>
+                            <span style="color: #6b7280;">(203)</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="width: 100%;">Agendar Serviço</button>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="vacina.jpg" alt="Vacinação">
+                </div>
+                <div class="service-content">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                        <h3 class="service-title">Vacinação</h3>
+                        <span class="service-price">R$ 45</span>
+                    </div>
+                    <p class="service-description">Aplicação de vacinas essenciais</p>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.875rem;">
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <span>20 min</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #fbbf24;">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                            </svg>
+                            <span style="font-weight: 600;">4.8</span>
+                            <span style="color: #6b7280;">(94)</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="width: 100%;">Agendar Serviço</button>
+                </div>
+            </div>
+
+            <div class="service-card" style="opacity: 0.75;">
+                <div class="service-image" style="position: relative;">
+                    <img src="exame.jpg" alt="Exames Laboratoriais">
+                    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center;">
+                        <span style="background: #6b7280; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.875rem;">Indisponível</span>
+                    </div>
+                </div>
+                <div class="service-content">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                        <h3 class="service-title">Exames Laboratoriais</h3>
+                        <span class="service-price">R$ 120</span>
+                    </div>
+                    <p class="service-description">Exames de sangue, urina e fezes</p>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.875rem;">
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <span>30 min</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="color: #fbbf24;">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                            </svg>
+                            <span style="font-weight: 600;">4.9</span>
+                            <span style="color: #6b7280;">(67)</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn" style="width: 100%; background: #9ca3af; color: white; cursor: not-allowed;" disabled>Indisponível</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 2rem; margin-top: 3rem; text-align: center;">
+            <h2 style="font-size: 1.5rem; font-weight: bold; color: #374151; margin-bottom: 1rem;">Não encontrou o que procura?</h2>
+            <p style="color: #6b7280; margin-bottom: 1.5rem;">Entre em contato conosco e vamos encontrar a melhor solução para seu pet</p>
+            <div style="display: flex; flex-direction: column; gap: 1rem; justify-content: center;">
+                <a href="contato.html" class="btn" style="border: 1px solid #ea580c; color: #ea580c; background: white;">Falar Conosco</a>
+                <a href="cadastro.html" class="btn btn-primary">Cadastrar Pet</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
