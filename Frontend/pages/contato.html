@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - PetsBemEstar</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div></div>
+        <div class="header-center">
+            <img src="../img/logo.png" alt="PetsBemEstar Logo" class="header-logo">
+            <span class="header-title">PetsBemEstar</span>
+        </div>
+        <div class="header-actions">
+            <a href="login.html" class="header-link">Login</a>
+            <a href="cadastro.html" class="header-button">Cadastre-se</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+    <main class="container">
+        <div class="page-header">
+            <h1 class="main-title">AnimalsZoo</h1>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="servicos.html" class="nav-link">Serviços</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
+                <li><a href="contato.html" class="nav-link active">Contato</a></li>
+            </ul>
+        </nav>
+        <div id="mobileNav" class="mobile-nav">
+            <a href="index.html" class="mobile-nav-link">Início</a>
+            <a href="servicos.html" class="mobile-nav-link">Serviços</a>
+            <a href="sobre.html" class="mobile-nav-link">Sobre</a>
+            <a href="contato.html" class="mobile-nav-link active">Contato</a>
+        </div>
+        <div class="section-container">
+            <h2 class="section-title-custom">Entre em Contato</h2>
+            <div class="page-divider"></div>
+
+            <div class="contact-grid">
+                <div>
+                    <h3 class="contact-subtitle">Envie uma Mensagem</h3>
+                    <form id="contatoForm" onsubmit="handleContato(event)">
+                        <div class="form-group">
+                            <label for="nome" class="form-label">Nome Completo</label>
+                            <input id="nome" type="text" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input id="email" type="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefone" class="form-label">Telefone</label>
+                            <input id="telefone" type="tel" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensagem" class="form-label">Mensagem</label>
+                            <textarea id="mensagem" class="form-input form-textarea" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                    </form>
+                </div>
+                <div>
+                    <h3 class="contact-subtitle">Informações de Contato</h3>
+                    <div class="contact-info-block">
+                        <div class="contact-list-items">
+                            <div class="contact-item">
+                                <div class="contact-icon-circle">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C27C3D" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="contact-info-title">Endereço</h4>
+                                    <p class="contact-info-text">Rua dos Pets, 123<br>Vila Animal - São Paulo, SP</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon-circle">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C27C3D" stroke-width="2">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="contact-info-title">Telefone</h4>
+                                    <p class="contact-info-text">(11) 3456-7890</p>
+                                    <p class="contact-info-text">WhatsApp: (11) 99999-9999</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon-circle">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C27C3D" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                        <polyline points="22,6 12,13 2,6"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="contact-info-title">E-mail</h4>
+                                    <p class="contact-info-text">contato@petsbemestar.com</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon-circle">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C27C3D" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="contact-info-title">Horário de Funcionamento</h4>
+                                    <p class="contact-info-text">Segunda a Sexta: 8h às 18h</p>
+                                    <p class="contact-info-text">Sábado: 8h às 16h</p>
+                                    <p class="contact-info-text">Domingo: 9h às 15h</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map-placeholder">
+                        <div class="map-content">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <p>Mapa interativo</p>
+                            <p class="map-address">Rua dos Pets, 123 - São Paulo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="call-to-action-section">
+            <a href="cadastro.html" class="btn btn-primary btn-large">Cadastre-se já</a>
+        </div>
+    </main>
+
+    <script src="../js/script.js"></script>
+    <script>
+        function handleContato(event) {
+            event.preventDefault();
+            if (typeof validateForm === 'function' && validateForm('contatoForm')) {
+                alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                document.getElementById('contatoForm').reset();
+            } else if (typeof validateForm !== 'function') {
+                alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                document.getElementById('contatoForm').reset();
+            }
+        }
+    </script>
+</body>
+</html>
