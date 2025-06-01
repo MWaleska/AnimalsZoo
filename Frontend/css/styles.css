@@ -1,1740 +1,716 @@
-/* --- Global Styles --- */
+/* === RESET BÁSICO E ESTILOS GLOBAIS === */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #fff; /* Padrão, pode ser sobrescrito por seções/páginas específicas */
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: #333; 
+  background-color: #fdfdfd; 
+  overflow-x: hidden; 
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* === CLASSES UTILITÁRIAS === */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; 
+  padding-right: 1rem;
 }
 
-/* Adicionado para padding no container para alinhar com o header em algumas páginas */
-.page-content-top-padding {
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.page-content-top-padding { 
     padding-top: 2rem;
 }
 
-/* --- Header & Navigation (Aplicável a todas as pages) --- */
+
+/* === HEADER === */
 .header {
-    background-color: #1E1E1E;
-    color: white;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative; /* Adicionado para que o menu mobile possa ser posicionado em relação a ele */
-    z-index: 100; /* Garante que o header fique acima de outros elementos */
+  background-color: #FFFFFF;
+  color: #333;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.header-left-placeholder {
+  flex: 1;
+  display: none; 
 }
 
 .header-center {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; 
+}
+
+.header-logo-link:hover .header-title {
+  color: #A66A33; 
 }
 
 .header-logo {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+  width: 40px; 
+  height: 40px;
+  border-radius: 50%;
 }
 
 .header-title {
-    font-size: 0.875rem;
-    font-weight: 500;
+  font-size: 1.125rem; 
+  font-weight: 600;
+  color: #C27C3D; 
+  transition: color 0.3s ease;
 }
 
 .header-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; 
 }
 
-.header-link {
-    font-size: 0.75rem;
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
+.header-link-login,
+.header-button-signup {
+  display: none; 
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
 }
 
-.header-link:hover {
-    color: #f97316;
+.header-link-login {
+  color: #C27C3D;
 }
 
-.header-button {
-    font-size: 0.75rem;
-    background: white;
-    color: black;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    text-decoration: none;
-    transition: background-color 0.3s;
+.header-link-login:hover {
+  background-color: rgba(194, 124, 61, 0.1);
+  color: #A66A33;
 }
 
-.header-button:hover {
-    background-color: #f3f4f6;
+.header-button-signup {
+  background-color: #C27C3D;
+  color: white;
+  border: 1px solid transparent; 
 }
 
-.menu-toggle {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    padding: 0.25rem;
-    transition: color 0.3s;
-    display: none; /* Oculto por padrão, exibido em mobile */
+.header-button-signup:hover {
+  background-color: #A66A33;
+}
+
+.menu-toggle { 
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color 0.3s ease;
+  display: block; 
+}
+.menu-toggle svg{
+  display: block;
 }
 
 .menu-toggle:hover {
-    color: #f97316;
+  color: #C27C3D;
 }
 
-.main-nav {
-    margin-bottom: 2rem;
-}
-
-.nav-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    list-style: none;
-}
-
-.nav-link {
-    color: #6b7280;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.nav-link:hover,
-.nav-link.active {
-    color: #C27C3D;
-    font-weight: 500;
-}
-
+/* === MOBILE NAVIGATION === */
 .mobile-nav {
-    display: none; /* Oculto por padrão, exibido via JS/Media Query */
-    position: fixed; /* Posicionamento fixo na tela */
-    top: 0; /* Alinhado ao topo */
-    right: 0; /* Alinhado à direita */
-    width: 250px; /* Largura do menu mobile */
-    height: 100vh; /* Ocupa a altura total da viewport */
-    background: white;
-    border-left: 1px solid #e5e7eb; /* Borda para separar do conteúdo */
-    box-shadow: -4px 0 6px -1px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    z-index: 101; /* Fica acima do header */
-    transform: translateX(100%); /* Escondido fora da tela */
-    transition: transform 0.3s ease-out; /* Animação de slide */
-    flex-direction: column; /* Organiza os links em coluna */
+  display: none; 
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: white;
+  border-left: 1px solid #e5e7eb;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 1rem;
+  z-index: 1010; 
+  transform: translateX(100%);
+  transition: transform 0.3s ease-out;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
 }
 
 .mobile-nav.show {
-    transform: translateX(0); /* Desliza para dentro da tela */
-    display: flex; /* Garante que o flexbox seja aplicado ao aparecer */
+  transform: translateX(0);
+  display: flex;
 }
 
 .mobile-nav-link {
-    display: block;
-    padding: 0.5rem 0;
-    color: #374151;
-    text-decoration: none;
-    transition: color 0.3s;
+  display: block;
+  padding: 0.75rem 0.5rem;
+  color: #374151;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-.mobile-nav-link:hover,
+.mobile-nav-link:hover {
+  color: #C27C3D;
+  background-color: #f9fafb;
+}
+
 .mobile-nav-link.active {
-    color: #C27C3D;
-    font-weight: 500;
-}
-
-/* --- General Buttons --- */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 0.375rem;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.btn-primary {
-    background-color: #C27C3D;
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: #A66A33;
-}
-
-.btn-large {
-    padding: 1.5rem 3rem;
-    font-size: 1.125rem;
-    border-radius: 9999px; /* Pill shape */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.btn-large:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-.btn-small {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-    background-color: #ea580c;
-    color: white;
-}
-
-.btn-small:hover {
-    background-color: #c2410c;
-}
-
-.btn-outline { /* Adicionado para botões de outline, como no dashboard */
-    background: white;
-    border: 1px solid #d1d5db;
-    color: #374151;
-}
-
-.btn-outline:hover {
-    background: #f9fafb;
-}
-
-/* --- Form Styles (Aplicável a login, cadastro, contato) --- */
-.form-container {
-    max-width: 28rem;
-    margin: 0 auto;
-    padding-top: 2rem;
-}
-
-.form-title {
-    font-size: 1.875rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-label {
-    display: block;
-    font-size: 0.875rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-    color: #374151;
-}
-
-.form-input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
-    font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-input:focus {
-    outline: none;
-    border-color: #C27C3D;
-    box-shadow: 0 0 0 3px rgba(194, 124, 61, 0.1);
-}
-
-.form-textarea {
-    min-height: 7.5rem;
-    resize: vertical;
-}
-
-.form-footer {
-    margin-top: 1.5rem;
-    text-align: center;
-}
-
-.form-footer a {
-    color: #C27C3D;
-    text-decoration: none;
-}
-
-.form-footer a:hover {
-    text-decoration: underline;
-}
-
-/* --- Page Header (Aplicável a serviços, contato, sobre) --- */
-.page-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 2rem;
-    padding-top: 2rem;
-}
-
-.back-button {
-    background: none;
-    border: none;
-    padding: 0.5rem;
-    margin-right: 1rem;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    color: #374151;
-}
-
-.back-button:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
-
-.page-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #374151;
-}
-
-.page-subtitle {
-    font-size: 1.25rem;
-    color: #6b7280;
-}
-
-.page-divider {
-    width: 100%;
-    height: 1px;
-    background-color: #C27C3D;
-    margin: 2rem 0;
-}
-
-/* --- Hero Section (Index Page) --- */
-.hero {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    align-items: center;
-    margin-bottom: 4rem; /* Garante espaço abaixo da seção Hero */
-    padding-top: 2rem;
-}
-
-@media (min-width: 1024px) {
-    .hero {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-.main-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 1rem;
-}
-
-@media (min-width: 768px) {
-    .main-title {
-        font-size: 3rem;
-    }
-}
-
-.hero-subtitle {
-    font-size: 1.25rem;
-    color: #6b7280;
-    margin-bottom: 2rem;
-}
-
-.hero-image {
-    position: relative;
-}
-
-.hero-image-container {
-    position: relative;
-    aspect-ratio: 1;
-    background: linear-gradient(135deg, #fed7aa, #fbbf24);
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.floating-element {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    padding: 1rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.floating-heart {
-    top: -1rem;
-    right: -1rem;
-    color: #ef4444;
-}
-
-.floating-star {
-    bottom: -1rem;
-    left: -1rem;
-    color: #eab308;
-}
-
-.search-container {
-    margin-bottom: 2rem;
-}
-
-.search-box {
-    position: relative;
-    max-width: 24rem;
-    margin-top: 20px;
-}
-
-.search-icon {
-    position: absolute;
-    left: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #9ca3af;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 2;
-}
-
-.search-input {
-    width: 100%;
-    padding: 0.75rem 0.75rem 0.75rem 2.5rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
-    font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: #C27C3D;
-    box-shadow: 0 0 0 3px rgba(194, 124, 61, 0.1);
-}
-
-/* --- Section Headers (Common) --- */
-.section-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.section-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #C27C3D;
-    margin-bottom: 1rem;
-}
-
-@media (min-width: 768px) {
-    .section-title {
-        font-size: 2.5rem;
-    }
-}
-
-.section-subtitle {
-    font-size: 1.25rem;
-    color: #6b7280;
-}
-
-.section-divider {
-    width: 6rem;
-    height: 0.25rem;
-    background-color: #C27C3D;
-    margin: 0 auto;
-}
-
-/* --- Advantages Section (Index Page) --- */
-.advantages {
-    margin-top: 4rem; /* Garante espaço acima da seção Vantagens */
-    margin-bottom: 4rem;
-}
-
-.advantages-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-@media (min-width: 768px) {
-    .advantages-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .advantages-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-.advantage-card {
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s;
-    text-align: center;
-}
-
-.advantage-card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.advantage-image {
-    aspect-ratio: 16/9;
-    background-color: #f3f4f6;
-    overflow: hidden;
-}
-
-.advantage-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.advantage-content {
-    padding: 1.5rem;
-}
-
-.advantage-icon {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
-    color: #ea580c;
-}
-
-.advantage-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 0.5rem;
-}
-
-.advantage-description {
-    color: #6b7280;
-}
-
-/* --- Services Section (Index & Services Page) --- */
-.services {
-    background: linear-gradient(135deg, #fef3e2, #fef3c7);
-    border-radius: 1rem;
-    padding: 4rem 0;
-    margin-top: 4rem; /* Garante espaço acima da seção Serviços */
-    margin-bottom: 4rem;
-}
-
-.services-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-/* Estilos específicos para o body da página de serviços para o background gradiente */
-/* Removido para que a página de serviços herde o fundo branco padrão do body global */
-/* .services-page-body {
-    background: linear-gradient(135deg, #fef3e2, #fef3c7);
-} */
-
-/* Nova classe para o contêiner da barra de busca/filtro na página de serviços */
-.services-filter-bar {
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    padding: 1.5rem; /* Espaçamento interno */
-    margin-bottom: 2rem; /* Espaço abaixo da barra de filtro */
-}
-
-/* Classe para o contêiner do campo de busca na barra de filtros */
-.search-box-services {
-    position: relative;
-    margin-bottom: 1rem; /* Espaço abaixo do campo de busca, antes dos selects/botões */
-}
-
-/* Ajuste o padding do input de busca, se necessário, para acomodar o ícone */
-.search-input-padding {
-    padding-left: 2.5rem; /* Para o ícone de busca */
-}
-
-/* Classe para o contêiner do select e botão na barra de filtros */
-.filter-actions {
-    display: grid;
-    grid-template-columns: 1fr; /* Uma coluna em mobile */
-    gap: 1rem; /* Espaço entre os elementos */
-}
-
-@media (min-width: 768px) {
-    .filter-actions {
-        grid-template-columns: 1fr 1fr; /* Duas colunas em telas maiores */
-    }
-}
-
-/* Ajuste o select se necessário
-.filter-select {
-    /* Herda de .form-input, mas pode ter estilos adicionais */
-/* } */
-
-/* Ajuste o botão Agendar Agora se necessário */
-/* .schedule-button { */
-    /* Herda de .btn .btn-primary */
-/* }  */
-
-/* Estilos para o grid principal de serviços */
-.services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-@media (min-width: 768px) {
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .services-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-/* CARD DE SERVIÇO - MELHORIAS DE ESTILO E ESPAÇAMENTO */
-.service-card {
-    background: white;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); /* Sombra mais bonita */
-    transition: box-shadow 0.3s;
-    padding: 1.5rem; /* Aumentado o padding interno do card */
-    display: flex; /* Para controlar o layout interno do card */
-    flex-direction: column; /* Organiza conteúdo em coluna */
-    justify-content: space-between; /* Empurra o footer para baixo */
-}
-
-.service-card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.service-image {
-    aspect-ratio: 16/9;
-    background-color: #e5e7eb;
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 1rem; /* Espaço abaixo da imagem */
-}
-
-.service-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.service-content {
-    /* Removido padding aqui pois já está no .service-card */
-    flex-grow: 1; /* Permite que o conteúdo ocupe o espaço disponível */
-}
-
-/* Ajustes para o cabeçalho do card de serviço (título e preço) */
-.service-header-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.5rem;
-}
-
-.service-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 0.75rem; /* Espaço aumentado abaixo do título */
-}
-
-.service-description {
-    color: #6b7280;
-    margin-bottom: 1.25rem; /* Espaço aumentado abaixo da descrição */
-}
-
-/* Rodapé do Card de Serviço - Preço e Botão */
-.service-footer {
-    display: flex;
-    flex-direction: column; /* ALTERAÇÃO PRINCIPAL: Coloca os itens em coluna */
-    align-items: flex-start; /* Alinha o preço à esquerda (ou center se preferir) */
-    gap: 0.75rem; /* Espaço entre o preço e o botão */
-    margin-top: 1rem;
-}
-
-.service-price {
-    background-color: #fed7aa;
-    color: #c2410c;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    white-space: nowrap;
-    /* Remover 'margin-right' se você tiver adicionado antes, pois agora eles estarão em coluna */
-}
-
-/* Estilos para o botão "Agendar Serviço" dentro dos cards de serviço */
-.service-schedule-btn {
-    padding: 0.75rem 1.25rem;
-    font-size: 0.9rem;
-    width: 100%; /* ALTERAÇÃO: Faz o botão ocupar a largura total do rodapé do card */
-    text-align: center; /* Garante que o texto do botão esteja centralizado se o padding for desigual */
-}
-
-/* Estilos para o card de serviço indisponível */
-.unavailable-service {
-    opacity: 0.75;
-    pointer-events: none; /* Desabilita cliques em tudo dentro do card */
-}
-
-.unavailable-button {
-    background: #9ca3af;
-    color: white;
-    cursor: not-allowed;
-    width: 100%; /* Garante que o botão desabilitado também ocupe 100% */
-}
-
-.service-unavailable-overlay { /* Para o serviço "Indisponível */
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1; /* Garante que o overlay fique por cima da imagem */
-}
-
-.service-unavailable-overlay span {
-    background: #6b7280;
-    color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-}
-
-/* Estilos específicos para detalhes de serviço (tempo, avaliação) */
-.service-details-meta { /* Estilos que estavam inline na página de serviços */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    font-size: 0.875rem;
-}
-
-.service-details-meta div {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-}
-
-.service-details-meta svg {
-    color: currentColor; /* Para o ícone de tempo/duração */
-    fill: none; /* Para garantir que o fill não sobrescreva */
-    stroke-width: 2; /* Para o ícone de tempo/duração */
-}
-
-.service-details-meta .star {
-    color: #fbbf24;
-    fill: currentColor; /* Garante que a estrela seja preenchida */
-    stroke: none; /* Remove a borda da estrela */
-}
-
-.service-details-meta .rating-score {
-    font-weight: 600;
-}
-
-.service-details-meta .rating-count {
-    color: #6b7280;
-}
-
-/* Estilos para a seção de CTA na página de serviços */
-.services-cta-section {
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    padding: 2rem;
-    margin-top: 3rem;
-    text-align: center;
-}
-
-.services-cta-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #374151;
-    margin-bottom: 1rem;
-}
-
-.services-cta-description {
-    color: #6b7280;
-    margin-bottom: 1.5rem;
-}
-
-.services-cta-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.contact-us-btn {
-    border: 1px solid #ea580c;
-    color: #ea580c;
-    background: white;
-}
-
-/* .add-pet-btn {
-    /* Herda de .btn .btn-primary */
-/* }  */
-
-
-/* --- Testimonials Section (Index Page) --- */
-.testimonials {
-    background: white;
-    padding: 4rem 0;
-    margin-top: 4rem; /* Garante espaço acima da seção Testimonials */
-    margin-bottom: 4rem;
-}
-
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-@media (min-width: 768px) {
-    .testimonials-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-.testimonial-card {
-    background: white;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s;
-}
-
-.testimonial-card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.testimonial-header {
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.client-info {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.client-photo {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.client-name {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-}
-
-.client-pet {
-    font-size: 0.875rem;
-    color: #ea580c;
-}
-
-.rating {
-    display: flex;
-    gap: 0.25rem;
-}
-
-.star {
-    color: #fbbf24;
-    font-size: 1.25rem;
-}
-
-.testimonial-text {
-    color: #6b7280;
-    font-style: italic;
-    margin-bottom: 1rem;
-}
-
-.pet-photo-container {
-    display: flex;
-    justify-content: center;
-}
-
-.pet-photo {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    border: 2px solid #fed7aa;
-    object-fit: cover;
-}
-
-/* --- Gallery Section (Index Page) --- */
-.gallery {
-    margin-top: 4rem; /* Garante espaço acima da seção Galeria */
-    margin-bottom: 4rem;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-
-@media (min-width: 768px) {
-    .gallery-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-.gallery-item {
-    aspect-ratio: 1;
-    background-color: #f3f4f6;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.gallery-item:hover {
-    transform: scale(1.05);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* --- Footer (Aplicável a todas as pages) --- */
-.footer {
-    background-color: #374151;
-    color: white;
-    padding: 3rem 0;
-    border-radius: 1rem 1rem 0 0;
-    margin-top: 4rem; /* Garante espaço acima do Footer */
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-@media (min-width: 768px) {
-    .footer-content {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-.footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-}
-
-.footer-logo-img {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-}
-
-.footer-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #f97316;
-}
-
-.footer-description {
-    color: #d1d5db;
-}
-
-.footer-heading {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.footer-list {
-    list-style: none;
-}
-
-.footer-list li {
-    margin-bottom: 0.5rem;
-    color: #d1d5db;
-}
-
-.footer-list a {
-    color: #d1d5db;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer-list a:hover {
-    color: #f97316;
-}
-
-.footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.contact-item { /* Estilo base para itens de contato no footer e em outras seções */
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #d1d5db;
-}
-
-.contact-item svg {
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 2;
-}
-
-.footer-bottom {
-    border-top: 1px solid #4b5563;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    text-align: center;
-    color: #d1d5db;
-}
-
-
-/* --- Dashboard Specific Styles --- */
-.dashboard-header {
-    background: white;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.dashboard-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.dashboard-logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ea580c;
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.user-info span { /* "Olá, Maria Silva!" */
-    color: #374151;
-}
-
-.avatar {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    background: #f3f4f6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    color: #374151;
-}
-
-.dashboard-content {
-    background: linear-gradient(135deg, #fef3e2, #fef3c7);
-    min-height: calc(100vh - 80px); /* Altura da viewport menos a altura do header */
-    padding: 2rem 0;
-}
-
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-@media (min-width: 1024px) {
-    .dashboard-grid {
-        grid-template-columns: 1fr 3fr;
-    }
-}
-
-.sidebar-card {
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
-
-.sidebar-card .card-header { /* Para evitar conflito com outros .card-header */
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.user-name { /* Título do nome do usuário na sidebar */
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-}
-
-.user-since { /* Texto "Cliente desde" */
-    color: #6b7280;
-}
-
-.sidebar-card .card-content { /* Para evitar conflito com outros .card-content */
-    padding: 1.5rem;
-}
-
-.large-avatar {
-    width: 6rem;
-    height: 6rem;
-    border-radius: 50%;
-    background: #f3f4f6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #374151;
-    margin: 0 auto 1rem;
-}
-
-.user-contact-info { /* Contêiner para os dados de contato do usuário na sidebar */
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.edit-profile-btn { /* Botão "Editar Perfil" */
-    width: 100%;
-    margin-top: 0.5rem; /* Espaçamento após os itens de contato */
-}
-
-.quick-actions-card { /* Card de ações rápidas na sidebar */
-    margin-top: 1.5rem;
-}
-
-.quick-actions-title { /* Título "Ações Rápidas" */
-    font-size: 1.125rem;
-    font-weight: 600;
-}
-
-.quick-actions-content { /* Contêiner para os botões de ações rápidas */
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.quick-action-btn { /* Botões individuais de ações rápidas */
-    width: 100%;
-}
-
-.tabs {
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.tabs-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.tab-trigger {
-    padding: 1rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: 500;
-    color: #374151;
-}
-
-.tab-trigger:hover {
-    background: #f9fafb;
-}
-
-.tab-trigger.active {
-    background: #f3f4f6;
-    border-bottom: 2px solid #ea580c;
-    color: #ea580c;
-}
-
-.tab-content {
-    padding: 1.5rem;
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-.tab-content-header { /* Cabeçalho dentro dos conteúdos das tabs */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.tab-content-title { /* Título como "Meus Pets", "Próximos Agendamentos" */
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #374151;
-}
-
-.pets-grid { /* Grid para os cards de pets */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo */
-    gap: 1.5rem;
-}
-
-.pet-card {
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    padding: 1.5rem;
-    margin-bottom: 1rem; /* Pode ser removido se dentro de um grid com gap */
-    transition: box-shadow 0.3s;
-}
-
-.pet-card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-}
-
-.pet-info {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.pet-avatar {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    background: #f3f4f6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    color: #374151;
-}
-
-.pet-name { /* Nome do pet no card */
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.pet-breed-age { /* Raça e idade do pet */
-    color: #6b7280;
-}
-
-.status-badge {
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-}
-
-.status-healthy {
-    background: #dcfce7;
-    color: #166534;
-}
-
-.status-treatment {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-.status-confirmed {
-    background: #dbeafe;
-    color: #1e40af;
-}
-
-.status-pending {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    margin-bottom: 1rem;
-}
-
-.info-item {
-    display: flex;
-    justify-content: space-between;
-    color: #374151;
-}
-
-.info-label { /* Label como "Espécie:", "Peso:" */
-    color: #6b7280;
-}
-
-.button-group {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.appointment-card {
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    transition: box-shadow 0.3s;
-}
-
-.appointment-card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-}
-
-.appointment-header { /* Cabeçalho do card de agendamento */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.appointment-icon-circle {
-    background: #fed7aa;
-    padding: 0.75rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 1rem; /* Espaçamento com o texto */
-}
-
-.appointment-icon-circle svg {
-    stroke: #ea580c;
-    fill: none;
-    stroke-width: 2;
-}
-
-.appointment-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-}
-
-.appointment-date-time {
-    color: #6b7280;
-    font-size: 0.875rem;
-}
-
-.appointment-actions { /* Grupo de botões no agendamento */
-    margin-top: 1rem;
-}
-
-.empty-state-message { /* Mensagem para "Nenhum histórico disponível" */
-    color: #6b7280;
-    text-align: center;
-    padding: 2rem;
-}
-
-/* --- About Section (Sobre Page) --- */
-.about-section-main {
-    margin-bottom: 3rem;
-}
-
-.about-section-title { /* Título principal "Sobre Nós" */
-    font-size: 1.875rem;
-    font-weight: 500;
-    color: #C27C3D;
-    margin-bottom: 0.5rem;
-}
-
-.about-section-content { /* Usado para o grid principal do conteúdo de sobre */
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-}
-
-@media (min-width: 768px) {
-    .about-section-content {
-        grid-template-columns: 1fr 1fr; /* Duas colunas em telas maiores */
-    }
-}
-
-.about-section-subtitle { /* Títulos de subseção como "Nossa História", "Nossa Missão" */
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    color: #374151;
-}
-
-.about-text-block { /* Parágrafos de texto na seção "Sobre" */
-    color: #374151;
-    margin-bottom: 1rem;
-}
-
-.about-image-placeholder {
-    background: #e5e7eb;
-    border-radius: 0.5rem;
-    aspect-ratio: 5/3;
-    overflow: hidden;
-}
-
-.about-image-placeholder img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 0.5rem;
-}
-
-.about-mission-section {
-    margin-bottom: 3rem;
-}
-
-.about-mission-card {
-    background: #f9fafb;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-}
-
-.about-mission-text {
-    color: #374151;
-    font-style: italic;
-    margin-bottom: 0;
-}
-
-.about-values-section {
-    margin-bottom: 3rem; /* Espaçamento entre as seções de "Sobre" */
-}
-
-.about-values-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-}
-
-@media (min-width: 768px) {
-    .about-values-grid {
-        grid-template-columns: repeat(2, 1fr); /* Duas colunas em telas maiores */
-    }
-}
-
-.about-value-card {
-    background: #f9fafb;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-}
-
-.about-value-title {
-    font-weight: 500;
-    color: #C27C3D;
-    margin-bottom: 0.5rem;
-}
-
-.about-value-description {
-    color: #374151;
-    margin-bottom: 0;
-}
-
-
-/* --- Contact Section (Contato Page) --- */
-.section-container { /* Contêiner para o conteúdo principal da página de contato */
-    margin-bottom: 3rem;
-}
-
-.section-title-custom { /* Título principal "Entre em Contato" */
-    font-size: 1.875rem;
-    font-weight: 500;
-    color: #C27C3D;
-    margin-bottom: 0.5rem;
-    padding-top: 2rem; /* Garante que haja espaço do topo da main */
+  color: #C27C3D;
+  font-weight: 600;
+}
+
+.mobile-nav-divider {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 1rem 0;
+}
+
+.mobile-nav-signup {
+  background-color: #C27C3D;
+  color: white !important;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.mobile-nav-signup:hover {
+  background-color: #A66A33;
+  color: white !important;
+}
+
+
+/* === DESKTOP NAVIGATION ("Aba de Navegação") === */
+.main-nav {
+  display: none; 
+  margin-top: 1.5rem;   
+  margin-bottom: 2.5rem;
+  padding: 0.75rem 0; 
+  border-radius: 0.375rem; 
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07); */ /* Sombra removida */
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem; 
+  padding-left: 1rem; 
+  padding-right: 1rem;
+}
+
+.nav-link {
+  color: #495057; 
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem; 
+  border-radius: 0.25rem; 
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #C27C3D; 
+  background-color: #e9ecef; 
+}
+
+.nav-link.active {
+  color: #FFFFFF; 
+  background-color: #C27C3D; 
+  font-weight: 500; 
+}
+
+
+/* === GENERAL BUTTONS === */
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border: none; border-radius: 0.375rem; font-weight: 500; cursor: pointer; transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease; text-decoration: none; }
+.btn-primary { background-color: #C27C3D; color: white; }
+.btn-primary:hover { background-color: #A66A33; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.btn-large { padding: 1rem 2.5rem; font-size: 1.125rem; border-radius: 9999px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+.btn-large:hover { box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); transform: translateY(-2px); }
+.btn-small { padding: 0.5rem 1rem; font-size: 0.875rem; background-color: #ea580c; color: white; }
+.btn-small:hover { background-color: #c2410c; }
+
+/* === FORM STYLES === */
+.form-container { max-width: 28rem; margin: 2rem auto; padding: 0 1rem; }
+.form-title { font-size: 1.75rem; font-weight: 600; text-align: center; margin-bottom: 1.5rem; }
+.form-group { margin-bottom: 1.25rem; }
+.form-label { display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.375rem; color: #374151; }
+.form-input, .form-textarea { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.25rem; font-size: 1rem; font-family: inherit; background-color: #fff; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+.form-input:focus, .form-textarea:focus { outline: none; border-color: #C27C3D; box-shadow: 0 0 0 3px rgba(194, 124, 61, 0.2); }
+.form-textarea { min-height: 7.5rem; resize: vertical; }
+.form-footer { margin-top: 1.5rem; text-align: center; font-size: 0.9rem; }
+.form-footer a { color: #C27C3D; }
+.form-footer a:hover { text-decoration: underline; }
+
+/* === HERO SECTION (Estilos permanecem) === */
+.hero { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; padding: 2rem 0; margin-bottom: 3rem; }
+.hero-content { text-align: center; }
+.main-title { font-size: 2.25rem; font-weight: 700; color: #333; margin-bottom: 0.75rem; }
+.hero-subtitle { font-size: 1.125rem; color: #555; margin-bottom: 1.5rem; line-height: 1.7; }
+.hero-image-container { position: relative; aspect-ratio: 4/3; background: linear-gradient(135deg, #fed7aa, #fbbf24); border-radius: 0.75rem; overflow: hidden; box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.2); margin-top: 2rem; }
+.hero-img { width: 100%; height: 100%; object-fit: cover; }
+.floating-element { position: absolute; background: white; border-radius: 50%; padding: 0.75rem; box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); }
+.floating-element svg { width: 24px; height: 24px; display: block; }
+.floating-heart { top: -1rem; right: -1rem; color: #ef4444; }
+.floating-star { bottom: -1rem; left: -1rem; color: #eab308; }
+.search-container { margin: 2rem auto 0 auto; max-width: 28rem; }
+.search-box { position: relative; }
+.search-icon { position: absolute; left: 0.875rem; top: 50%; transform: translateY(-50%); color: #9ca3af; stroke: currentColor; fill: none; stroke-width: 2; width: 16px; height: 16px; }
+.search-input { width: 100%; padding: 0.875rem 0.875rem 0.875rem 2.75rem; border: 1px solid #d1d5db; border-radius: 0.375rem; font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+.search-input:focus { outline: none; border-color: #C27C3D; box-shadow: 0 0 0 3px rgba(194, 124, 61, 0.2); }
+
+/* === PAGE HEADER (Para páginas internas como Serviços, Contato, Sobre) === */
+.page-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+.back-button { background: none; border: 1px solid #e0e0e0; padding: 0.5rem; border-radius: 50%; cursor: pointer; transition: background-color 0.3s ease, border-color 0.3s ease; color: #555; display: inline-flex; align-items: center; justify-content: center; }
+.back-button:hover { background-color: #f5f5f5; border-color: #ccc; }
+.back-button svg { width: 20px; height: 20px; stroke: currentColor; }
+.page-title { font-size: 1.875rem; font-weight: 600; color: #374151; margin-bottom: 0.25rem; }
+.page-subtitle { font-size: 1rem; color: #6b7280; }
+
+/* === SECTION STYLES === */
+.section-header { text-align: center; margin-bottom: 2.5rem; padding-top: 2rem; }
+.section-title { font-size: 1.875rem; font-weight: 600; color: #C27C3D; margin-bottom: 0.75rem; }
+.section-subtitle { font-size: 1.1rem; color: #6b7280; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+.section-divider { width: 5rem; height: 3px; background-color: #C27C3D; margin: 1rem auto 0 auto; }
+
+/* === ADVANTAGES, SERVICES (INDEX), TESTIMONIALS, GALLERY SECTIONS === */
+/* (Estes estilos permanecem como no CSS completo anterior) */
+.advantages { padding: 2rem 0; }
+.advantages-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+.advantage-card { background: white; border-radius: 0.5rem; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); transition: box-shadow 0.3s ease, transform 0.3s ease; text-align: center; }
+.advantage-card:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); transform: translateY(-4px); }
+.advantage-image { aspect-ratio: 16/10; background-color: #f3f4f6; overflow: hidden; }
+.advantage-image img { width: 100%; height: 100%; object-fit: cover; }
+.advantage-content { padding: 1.25rem; }
+.advantage-icon { display: flex; justify-content: center; margin-bottom: 0.75rem; color: #ea580c; }
+.advantage-icon svg { width: 28px; height: 28px; }
+.advantage-title { font-size: 1.125rem; font-weight: 600; color: #374151; margin-bottom: 0.375rem; }
+.advantage-description { color: #6b7280; font-size: 0.875rem; line-height: 1.5; }
+
+.services { background: linear-gradient(135deg, #fff7ed, #fffbeb); border-radius: 0.75rem; padding: 3rem 0; margin: 3rem 0; }
+.services-container { max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
+.services-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+.page-services-grid { margin-top: 0; position: relative; }
+.service-card { background: white; border-radius: 0.5rem; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); transition: box-shadow 0.3s ease, transform 0.3s ease; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between; }
+.service-card:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); transform: translateY(-4px); }
+.service-image { aspect-ratio: 16/10; background-color: #e5e7eb; overflow: hidden; position: relative; margin-bottom: 1rem; border-radius: 0.25rem; }
+.service-image img { width: 100%; height: 100%; object-fit: cover; }
+.service-content { flex-grow: 1; display: flex; flex-direction: column; }
+.service-header-details { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+.service-title { font-size: 1.125rem; font-weight: 600; color: #374151; margin-right: 0.5rem; }
+.service-price { background-color: #fed7aa; color: #c2410c; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 500; white-space: nowrap; align-self: flex-start; }
+.service-description { color: #6b7280; margin-bottom: 1rem; font-size: 0.875rem; line-height: 1.5; flex-grow: 1; }
+.service-details-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.8rem; color: #6b7280; }
+.service-details-meta > div { display: flex; align-items: center; gap: 0.25rem; }
+.service-details-meta svg { width: 14px; height: 14px; stroke: currentColor; }
+.service-details-meta .star { fill: #facc15; stroke: none; }
+.rating-score { font-weight: 600; color: #333; }
+.service-schedule-btn { width: 100%; margin-top: auto; }
+.unavailable-service { opacity: 0.6; pointer-events: none; }
+.service-unavailable-overlay { position: absolute; inset: 0; background: rgba(255, 255, 255, 0.7); display: flex; align-items: center; justify-content: center; z-index: 1; }
+.service-unavailable-overlay span { background: #6b7280; color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 500; }
+.unavailable-button { background-color: #9ca3af !important; cursor: not-allowed; width: 100%; }
+.services-cta-section { background: #ffffff; border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #e5e7eb; padding: 2.5rem 1.5rem; margin-top: 3rem; margin-bottom: 2rem; text-align: center; }
+.services-cta-title { font-size: 1.625rem; font-weight: 600; color: #374151; margin-bottom: 0.75rem; }
+.services-cta-description { color: #6b7280; margin-bottom: 2rem; max-width: 550px; margin-left: auto; margin-right: auto; }
+.services-cta-buttons { display: flex; flex-direction: column; gap: 1rem; justify-content: center; align-items: center; }
+.services-cta-buttons .btn { padding: 0.875rem 2rem; min-width: 220px; font-size: 0.95rem; }
+.contact-us-btn { border: 1px solid #C27C3D; color: #C27C3D; background: white; }
+.contact-us-btn:hover { background-color: #FFF8F0; border-color: #A66A33; color: #A66A33; }
+
+.testimonials { padding: 3rem 0; }
+.testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+/* ... (Resto dos estilos de testimonial-card, gallery, etc. permanecem) ... */
+.testimonial-card { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 0.5rem; padding: 1.25rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); transition: box-shadow 0.3s ease, transform 0.3s ease; }
+.testimonial-card:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); transform: translateY(-4px); }
+.testimonial-header { margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; }
+.client-info { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+.client-photo { width: 3rem; height: 3rem; border-radius: 50%; object-fit: cover; border: 2px solid #C27C3D; }
+.client-name { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.125rem; }
+.client-pet { font-size: 0.8rem; color: #ea580c; }
+.rating { display: flex; gap: 0.125rem; }
+.star { color: #facc15; font-size: 1.1rem; }
+.testimonial-text { color: #555; font-style: italic; margin-bottom: 1rem; font-size: 0.9rem; line-height: 1.6; }
+.pet-photo-container { display: flex; justify-content: center; margin-top: 1rem; }
+.pet-photo { width: 3.5rem; height: 3.5rem; border-radius: 50%; border: 2px solid #fed7aa; object-fit: cover; }
+
+.gallery { padding: 3rem 0; }
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+.gallery-item { aspect-ratio: 1; background-color: #f3f4f6; border-radius: 0.375rem; overflow: hidden; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.gallery-item:hover { transform: scale(1.03); box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+
+/* === CONTACT PAGE SPECIFIC STYLES === */
+.page-title-container { /* Regra genérica para container de título de página */
+    padding-bottom: 1rem;
+    margin-bottom: 2rem; 
+    border-bottom: 1px solid #e0e0e0; /* Borda cinza claro padrão */
+}
+.contact-page-title-container { /* Específico para Contato */
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem; 
+    border-bottom: 2px solid #A66A33; /* LINHA MARROM MAIS ESCURA e mais grossa */
+}
+.contact-page-title-container .page-title { 
+    color: #A66A33; /* Título "Entre em Contato" com marrom mais escuro */
+    text-align: left; 
+    font-size: 2rem; 
+    margin-bottom: 0; 
 }
 
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr; 
+    gap: 2.5rem; 
+    margin-bottom: 3rem; 
 }
 
-@media (min-width: 768px) {
-    .contact-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-.contact-subtitle { /* Títulos "Envie uma Mensagem", "Informações de Contato" */
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
-}
-
-.contact-info-block { /* Estilo do bloco de informações de contato */
-    background: white;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+.contact-subtitle { 
+    font-size: 1.375rem; 
+    font-weight: 600;
+    color: #333; 
     margin-bottom: 1.5rem;
 }
 
-.contact-list-items { /* Contêiner dos itens de contato dentro do bloco */
+.contact-form-button { 
+    width: 100%; 
+}
+
+.contact-info-block { /* MODIFICADO */
+    background-color: #fff; 
+    padding: 1.5rem;
+    border: 1px solid #A66A33; /* Borda na cor marrom mais escura do site */
+    border-radius: 0.5rem; 
+    margin-bottom: 2rem; 
+    box-shadow: 0 2px 8px rgba(166, 106, 51, 0.1); /* Sombra suave com cor do tema (A66A33) */
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start; 
+    gap: 1rem; 
+    margin-bottom: 1.25rem;
+}
+.contact-item:last-child {
+    margin-bottom: 0;
+}
+
+.contact-icon-circle {
+    background-color: #FFF8F0; 
+    border-radius: 50%;
+    width: 44px; 
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; 
+}
+
+.contact-icon-circle svg {
+    stroke: #374151; /* Cor dos ícones para marronzinho mais escuro */
+    fill: none; 
+    width: 20px;
+    height: 20px;
+}
+
+.contact-item-details {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.1rem; 
 }
 
-.contact-info-block .contact-item { /* Sobrepõe o .contact-item do footer para esta seção */
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: #374151; /* Cor do texto geral do item de contato */
-}
-
-.contact-icon-circle { /* Círculo com ícone */
-    background: rgba(194, 124, 61, 0.1);
-    padding: 0.75rem;
-    border-radius: 50%;
-}
-
-.contact-info-block .contact-item svg {
-    stroke: #C27C3D;
-    fill: none;
-    stroke-width: 2;
-}
-
-.contact-info-title { /* Título do item de contato (Endereço, Telefone) */
+.contact-item-details strong { 
     font-weight: 500;
-    margin-bottom: 0.25rem;
-    color: #374151;
+    color: #374151; 
+    font-size: 0.95rem;
+    margin-bottom: 0.15rem;
 }
 
-.contact-info-text { /* Texto do item de contato */
-    color: #6b7280;
-    margin-bottom: 0;
+.contact-item-details span { 
+    font-size: 0.9rem;
+    color: #555; 
+    line-height: 1.5;
 }
 
-.map-placeholder {
-    aspect-ratio: 16/9; /* Mais adequado para mapas que 16/9 ou 5/3 */
-    background: #e5e7eb;
+.map-placeholder { 
+    background-color: #f0f3f5; 
     border-radius: 0.5rem;
+    padding: 2.5rem 1.5rem; 
+    text-align: center;
+    color: #6c757d; 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    color: #6b7280;
+    min-height: 280px; 
+    border: 1px solid #dfe3e6; 
 }
-
-.map-content { /* Contêiner interno do placeholder do mapa */
-    text-align: center;
-    color: #6b7280;
+.map-placeholder .map-icon {
+    width: 36px; 
+    height: 36px;
+    stroke: #A66A33; 
+    margin-bottom: 0.75rem;
 }
-
-.map-placeholder svg {
-    margin: 0 auto 0.5rem;
+.map-placeholder span { 
+    font-weight: 500;
+    color: #495057; 
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
 }
-
-.map-address { /* Texto de endereço no mapa */
-    font-size: 0.875rem;
-    margin-bottom: 0;
-}
-
-.call-to-action-section { /* Seção para o botão "Cadastre-se já" no final de algumas páginas */
-    margin-bottom: 4rem;
-    text-align: center;
+.map-placeholder small { 
+    font-size: 0.85rem;
 }
 
 
-/* --- Responsive Adjustments --- */
-@media (max-width: 767px) {
-    .container {
-        padding: 0 0.5rem;
-    }
-
-    .hero {
-        padding-top: 1rem;
-        gap: 2rem;
-    }
-
-    .main-title {
-        font-size: 2rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-
-    /* Navegação */
-    .main-nav {
-        display: none; /* Oculta a navegação desktop em mobile */
-    }
-    .menu-toggle {
-        display: block; /* Exibe o botão de menu hambúrguer */
-    }
-    .header-actions .header-link,
-    .header-actions .header-button {
-        display: none; /* Oculta links de login/cadastro no header principal em mobile */
-    }
-    .mobile-nav {
-        /* As propriedades de 'position', 'top', 'right', 'width', 'height', 'z-index', 'transform', 'transition' já estão definidas acima */
-        display: flex; /* Para garantir que o flexbox seja aplicado corretamente */
-        flex-direction: column;
-    }
-
-    /* Ajustes específicos para layouts de grid em mobile */
-    .advantages-grid,
-    .services-grid,
-    .testimonials-grid,
-    .gallery-grid,
-    .dashboard-grid,
-    .footer-content,
-    .contact-grid, /* Adicionado para a página de contato */
-    .about-section-content, /* Adicionado para a página "Sobre" */
-    .about-values-grid /* Adicionado para a página "Sobre" */
-    {
-        grid-template-columns: 1fr; /* Força uma coluna em telas muito pequenas */
-    }
-
-    /* Ajustes de espaçamento em mobile */
-    .form-container {
-        padding: 1rem;
-    }
-
-    .dashboard-container {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-    .dashboard-header .header-center {
-        display: flex; /* Garante que o logo/título do dashboard apareça */
-    }
-    .dashboard-header .user-info {
-        width: 100%;
-        justify-content: flex-end; /* Alinha o avatar para a direita */
-    }
-    .dashboard-header .user-info span {
-        display: none; /* Oculta o "Olá, Maria Silva!" no mobile para economizar espaço */
-    }
-    .tabs-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas para tabs no mobile */
-    }
-    .tab-trigger {
-        font-size: 0.875rem;
-        padding: 0.75rem;
-    }
-
-    /* Ajustes específicos para a barra de filtros de serviços em mobile */
-    .filter-actions {
-        grid-template-columns: 1fr; /* Certifica que é 1 coluna em mobile */
-    }
+/* === SOBRE NÓS SECTION === */
+.about-us-section { padding: 2rem 0; }
+.about-us-subtitle { /* Para "Nossa História" */
+  color: #555; 
+  font-size: 1.75rem; 
+  font-weight: 500;
+  text-align: center; 
+  margin-bottom: 1.5rem; 
 }
-
-/* --- Animations --- */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.about-page-title-container { /* Específico para Sobre Nós */
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem; 
+    border-bottom: 2px solid #A66A33; /* LINHA MARROM MAIS ESCURA e mais grossa */
 }
-
-.advantage-card,
-.service-card,
-.testimonial-card {
-    animation: fadeInUp 0.6s ease-out forwards;
+.about-page-title-container .page-title { 
+    color: #A66A33; /* Título "Sobre Nós" com marrom mais escuro */
+    text-align: left; 
+    font-size: 2rem; 
+    margin-bottom: 0; 
 }
-
-/* --- Utility Classes --- */
-.text-center {
-    text-align: center;
+.about-us-content-wrapper { display: flex; justify-content: flex-end; }
+.about-intro-grid { /* Grid para os dois textos iniciais da página Sobre Nós */
+    display: grid;
+    grid-template-columns: 1fr; /* Uma coluna no mobile */
+    gap: 2rem;
+    margin-bottom: 3rem;
 }
-
-.mb-4 {
+.about-intro-left p {
+    margin-bottom: 1em;
+    line-height: 1.7;
+    color: #4A4A4A;
+}
+.about-section-heading { /* Para "Nossa Trajetória" */
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: #333;
     margin-bottom: 1rem;
 }
-
-.mb-8 {
-    margin-bottom: 2rem;
+.history-box { /* Para o texto da direita com fundo marrom claro */
+  background-color: #F5EADD; /* Fundo marrom claro */
+  border-left: 4px solid #A66A33; /* Borda lateral marrom escura */
+  border-radius: 0 0.5rem 0.5rem 0; 
+  padding: 2rem; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.07); 
+}
+.history-box p {
+  color: #4A4A4A; 
+  text-align: left; /* Alinhado à esquerda para melhor leitura */
+  line-height: 1.8;    
+  font-size: 0.95rem;     
+}
+.mission-values-section {
+    padding: 2rem 0;
+    background-color: #f9f9f9; /* Fundo levemente diferente para destacar */
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+}
+.mission-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+.mission-values-title { /* Para "Nossa Missão" e "Nossos Valores" */
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #C27C3D;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.mission-card p {
+    font-size: 1rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
-.hidden {
-    display: none;
+.values-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 coluna no mobile */
+    gap: 1.5rem;
+}
+.value-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #eee;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.06);
+    text-align: center;
+}
+.value-card h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #A66A33; /* Marrom escuro para o título do valor */
+    margin-bottom: 0.5rem;
+}
+.value-card p {
+    font-size: 0.9rem;
+    color: #6b7280;
 }
 
-.show {
-    display: block;
-}
-/* extras */
-.image-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    cursor: pointer;
-    /* Adicione transições se quiser um efeito de fade */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+/* === FOOTER === */
+/* (Estilos do Footer como na última versão completa) */
+.footer { background-color: #FFF8F0; color: #4A4A4A; padding-top: 3rem; border-top: 3px solid #C27C3D; margin-top: 3rem; }
+.footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2rem; padding-bottom: 2.5rem; }
+.footer-logo { display: flex; align-items: center; gap: 0.625rem; margin-bottom: 0.875rem; }
+.footer-logo-img { width: 2.5rem; height: 2.5rem; border-radius: 50%; }
+.footer-title { font-size: 1.5rem; font-weight: 700; color: #f97316; }
+.footer-description { color: #595959; font-size: 0.875rem; line-height: 1.5; margin-bottom: 1.25rem; }
+.footer-heading { font-size: 1.125rem; font-weight: 600; color: #A66A33; margin-bottom: 1rem; }
+.footer-list li { margin-bottom: 0.625rem; }
+.footer-list a { color: #C27C3D; font-size: 0.9rem; transition: color 0.2s ease, text-decoration 0.2s ease; }
+.footer-list a:hover { color: #f97316; text-decoration: underline; }
+.footer-contact { display: flex; flex-direction: column; gap: 0.875rem; }
+.footer .contact-item svg { stroke: #A66A33; fill: none; stroke-width: 1.5; flex-shrink: 0; margin-top: 0.1em; width: 18px; height: 18px; } 
+.footer-social { margin-top: 1.25rem; }
+.social-icons { display: flex; gap: 0.875rem; }
+.social-icon-link svg { width: 24px; height: 24px; fill: #A66A33; transition: fill 0.2s ease, transform 0.2s ease; }
+.social-icon-link:hover svg { fill: #f97316; transform: scale(1.1); }
+.footer-bottom { background-color: #C27C3D; color: #FFFFFF; padding: 1.25rem 0; text-align: center; font-size: 0.8rem; }
+
+/* === MODAL DE IMAGEM (Galeria) === */
+.image-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 1020; cursor: pointer; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-out, visibility 0s 0.3s linear; }
+.image-modal-overlay.show { opacity: 1; visibility: visible; transition: opacity 0.3s ease-out, visibility 0s 0s linear; }
+.image-modal-content { max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transform: scale(0.95); transition: transform 0.3s ease-out; }
+.image-modal-overlay.show .image-modal-content { transform: scale(1); }
+
+
+/* === AJUSTES RESPONSIVOS === */
+@media (min-width: 768px) { /* Tablets e Desktops Pequenos */
+  .header { padding: 1rem 1.5rem; }
+  .header-left-placeholder { display: block; flex: 1; }
+  .header-logo { width: 48px; height: 48px; }
+  .header-title { font-size: 1.25rem; }
+  .header-actions { flex: 1; justify-content: flex-end; }
+  .header-link-login, .header-button-signup { display: inline-flex; }
+  .menu-toggle { display: none; }
+  .main-nav { display: block; }
+
+  .hero { grid-template-columns: 1fr 1fr; padding: 3rem 0; text-align: left; }
+  .hero-content { text-align: left; }
+  .hero-image-container { margin-top: 0; aspect-ratio: 1; }
+  .search-container { margin: 2rem 0 0 0; max-width: 100%; }
+  .main-title { font-size: 2.75rem; }
+  .hero-subtitle { font-size: 1.2rem; }
+
+  .page-title { font-size: 2.25rem; }
+  .page-subtitle { font-size: 1.1rem; }
+  .section-title { font-size: 2rem; }
+  .section-subtitle { font-size: 1.15rem; }
+
+  .contact-grid { grid-template-columns: 1.2fr 1fr; gap: 3rem; }
+  .contact-form-button { width: auto; display: inline-block; padding-left: 2rem; padding-right: 2rem;}
+  
+  .about-intro-grid { grid-template-columns: 1fr 1.2fr; /* Coluna da direita um pouco maior */ }
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
+
+
+  .advantages-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .page-services-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .testimonials-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .gallery-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-.image-modal-overlay.show { /* Se você quiser controlar a visibilidade com uma classe 'show' */
-    opacity: 1;
-    visibility: visible;
+@media (min-width: 992px) { 
+    .about-us-content-wrapper { justify-content: flex-end; }
+    .values-grid { grid-template-columns: repeat(4, 1fr); } /* 4 colunas para valores em telas maiores */
+
 }
 
-.image-modal-content {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
+@media (min-width: 1024px) { /* Desktops Maiores */
+  .advantages-grid { grid-template-columns: repeat(4, 1fr); }
+  .services-grid { grid-template-columns: repeat(4, 1fr); }
+  .main-title { font-size: 3rem; }
 }
 
-/* Opcional: Classe para prevenir scroll no body quando o modal ou menu está aberto */
-/* Adicione ao body quando o modal/menu abre via JS */
-body.no-scroll {
-    overflow: hidden;
+@media (max-width: 767px) { /* Ajustes Específicos para Telas Pequenas (Mobile) */
+  .container { padding-left: 0.75rem; padding-right: 0.75rem; }
+  .footer-content { text-align: center; }
+  .footer-logo, .social-icons { justify-content: center; }
+  .footer-social{ display: flex; justify-content: center; }
+  .footer .contact-item { justify-content: center; text-align: center; flex-direction: column; align-items: center; } 
+  .footer .contact-item svg { margin-bottom: 0.25rem; } 
+  
+  .page-title { font-size: 1.75rem; }
+  .section-title { font-size: 1.6rem; }
+  .contact-subtitle { font-size: 1.25rem; }
+
+  .about-us-subtitle { font-size: 1.5rem; }
+  .about-us-content-wrapper { justify-content: center; } 
+  .about-intro-left { margin-bottom: 2rem; } /* Espaço entre os textos no mobile */
+  .history-box { max-width: 100%; margin-left:0; margin-right:0; }
+  .history-box p { text-align: justify; font-size: 0.9rem; }
+  .about-us-text-box { padding: 1.5rem; border-left-width: 3px; margin-left:0; margin-right:0; max-width: 100%;}
+  .about-us-text { text-align: justify; font-size: 0.95rem; }
+  .mission-values-title { font-size: 1.5rem; }
 }

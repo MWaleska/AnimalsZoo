@@ -9,18 +9,20 @@
 </head>
 <body>
 
-    <header class="header">
-        <div></div>
+     <header class="header">
+        <div class="header-left-placeholder"></div>
         <div class="header-center">
-            <img src="../img/logo.png" alt="PetsBemEstar Logo" class="header-logo">
-            <span class="header-title">PetsBemEstar</span>
+            <a href="index.html" class="header-logo-link">
+                <img src="../img/logo.png" alt="PetsBemEstar Logo" class="header-logo">
+                <span class="header-title">PetsBemEstar</span>
+            </a>
         </div>
         <div class="header-actions">
-            <a href="login.html" class="header-link">Login</a>
-            <a href="cadastro.html" class="header-button">Cadastre-se</a>
+            <a href="login.html" class="header-link header-link-login">Login</a>
+            <a href="cadastro.html" class="header-button header-button-signup">Cadastre-se</a>
             <button class="menu-toggle" onclick="toggleMobileMenu()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="currentColor"/>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="currentColor" />
                 </svg>
             </button>
         </div>
@@ -44,8 +46,8 @@
             <ul class="nav-list">
                 <li><a href="index.html" class="nav-link">Início</a></li>
                 <li><a href="servicos.html" class="nav-link active">Serviços</a></li>
-                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
                 <li><a href="contato.html" class="nav-link">Contato</a></li>
+                <li><a href="sobre.html" class="nav-link">Sobre</a></li>
             </ul>
         </nav>
 
@@ -64,7 +66,7 @@
                 </svg>
                 <input type="text" placeholder="Buscar serviços..." class="form-input search-input-padding">
             </div>
-
+            
             <div class="filter-actions">
                 <select class="form-input filter-select">
                     <option>Todos os Serviços</option>
@@ -74,7 +76,7 @@
                 </select>
 
                 <button class="btn btn-primary schedule-button">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="50" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
                         <line x1="16" y1="2" x2="16" y2="6"/>
                         <line x1="8" y1="2" x2="8" y2="6"/>
@@ -291,7 +293,6 @@
             <p class="services-cta-description">Entre em contato conosco e vamos encontrar a melhor solução para seu pet</p>
             <div class="services-cta-buttons">
                 <a href="contato.html" class="btn contact-us-btn">Falar Conosco</a>
-                <a href="cadastro.html" class="btn btn-primary add-pet-btn">Cadastrar Pet</a>
             </div>
         </div>
     </div>
