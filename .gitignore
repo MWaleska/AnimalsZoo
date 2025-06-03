@@ -6,7 +6,7 @@ Backend/logs/ # Se você criar uma pasta para logs de runtime
 Backend/build/ # Se você usar um processo de build (ex: TypeScript para JS)
 Backend/dist/  # Alternativa comum para pasta de build
 # Frontend
-node_modules/
+node_modules/   
 *.log
 
 .vscode/

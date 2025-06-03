@@ -28,24 +28,24 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
         const resultado = await response.json();
 
         if (response.ok) {
-            mensagemDiv.textContent = `Cadastro bem-sucedido! ID do usuário: ${resultado.userId}.`;
+            mensagemDiv.textContent = `Cadastro bem-sucedido! Você pode fazer login agora.`;
             mensagemDiv.style.color = 'green';
             document.getElementById('cadastroForm').reset();
 
-            let segundosParaRedirecionar = 10;
+            let segundosParaRedirecionar = 5;
             const redirecionamentoMsgSpan = document.createElement('span');
             redirecionamentoMsgSpan.id = 'contadorRedirecionamento';
             redirecionamentoMsgSpan.textContent = ` Redirecionando para login em ${segundosParaRedirecionar}...`;
             mensagemDiv.appendChild(redirecionamentoMsgSpan);
 
             const contadorInterval = setInterval(() => {
-                segundosParaRedirecionar--;
-                redirecionamentoMsgSpan.textContent = ` Redirecionando para login em ${segundosParaRedirecionar}...`;
+            segundosParaRedirecionar--;
+            redirecionamentoMsgSpan.textContent = ` Redirecionando para login em ${segundosParaRedirecionar}...`;
 
-                if (segundosParaRedirecionar <= 0) {
-                    clearInterval(contadorInterval);
-                    window.location.href = 'login.html';
-                }
+            if (segundosParaRedirecionar <= 0) {
+                clearInterval(contadorInterval);
+                window.location.href = 'login.html';
+            }
             }, 1000);
         } else {
             mensagemDiv.textContent = `Erro: ${resultado.message || response.statusText}`;

@@ -14,8 +14,8 @@
                 </a>
             </div>
             <div class="user-info">
-                <span>Olá, Maria Silva!</span>
-                <div class="avatar">MS</div>
+                <span id="userNameDisplayHeader">Olá, !</span>
+                <div class="avatar" id="userAvatarHeader">XX</div>
                 <a href="index.html" class="btn btn-outline btn-small logout-button">Sair</a>
             </div>
         </div>
@@ -178,9 +178,74 @@
     </div>
     
     <script src="../js/script.js"></script>
-    <script>
-        // Função para mostrar abas, movida para script.js principal
-        // function showTab(tabId) { ... }
-    </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const token = localStorage.getItem('tokenUsuario');
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const logoutButton = document.querySelector('.logout-button');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            localStorage.removeItem('tokenUsuario');
+            localStorage.removeItem('usuarioLogado');
+            window.location.href = 'index.html';
+        });
+    }
+
+    const editProfileButton = document.querySelector('.edit-profile-btn');
+    const editProfileModal = document.getElementById('editProfileModal');
+    const closeModalButton = document.querySelector('#editProfileModal .close-button');
+
+    if (editProfileButton && editProfileModal) {
+        editProfileButton.addEventListener('click', function() {
+            editProfileModal.style.display = 'block';
+        });
+    }
+
+    if (closeModalButton && editProfileModal) {
+        closeModalButton.addEventListener('click', function() {
+            editProfileModal.style.display = 'none';
+        });
+    }
+
+    window.addEventListener('click', function(event) {
+        if (event.target == editProfileModal) {
+            editProfileModal.style.display = 'none';
+        }
+    });
+
+    const tabTriggers = document.querySelectorAll('.tab-trigger');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function() {
+            tabTriggers.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            const tabId = this.getAttribute('data-tab');
+            const activeTabContent = document.getElementById(tabId);
+            if (activeTabContent) {
+                activeTabContent.classList.add('active');
+            }
+        });
+    });
+
+    const activeTrigger = document.querySelector('.tab-trigger.active');
+    if (!activeTrigger && tabTriggers.length > 0) {
+        tabTriggers[0].click();
+    } else if (activeTrigger) {
+        const initialTabId = activeTrigger.getAttribute('data-tab');
+        const initialActiveTabContent = document.getElementById(initialTabId);
+        if (initialActiveTabContent) {
+            tabContents.forEach(c => c.classList.remove('active'));
+            initialActiveTabContent.classList.add('active');
+        }
+    }
+});
+</script>
 </body>
 </html>
