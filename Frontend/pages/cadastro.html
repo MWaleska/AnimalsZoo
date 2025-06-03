@@ -35,16 +35,21 @@
     <div class="content-center-wrapper"> 
         <main class="form-container">
             <h1 class="form-title">Crie sua Conta</h1>
-
-            <form id="cadastroForm" onsubmit="handleCadastro(event)">
+             <div id="mensagem" style="text-align: center; margin-bottom: 1rem; color: red;"></div> 
+            <form id="cadastroForm">
                 <div class="form-group">
-                    <label for="fullName" class="form-label">Nome Completo</label>
-                    <input id="fullName" type="text" class="form-input" required>
+                    <label for="NomeCompleto" class="form-label">Nome Completo</label>
+                    <input id="NomeCompleto" type="text" class="form-input" required>
                 </div>
 
                 <div class="form-group">
                     <label for="email" class="form-label">Email</label>
                     <input id="email" type="email" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone" class="form-label">Telefone</label>
+                    <input id="telefone" type="tel" class="form-input" required>
                 </div>
 
                 <div class="form-group">
@@ -69,35 +74,8 @@
                 <p>Já tem uma conta? <a href="login.html">Faça Login</a></p>
             </div>
         </main>
-    </div> <script src="../js/script.js"></script>
-    <script>
-        function handleCadastro(event) {
-            event.preventDefault();
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-
-            if (password !== confirmPassword) {
-                alert('As senhas não coincidem!');
-                // Adicionar estilo de erro aos campos de senha se desejar
-                document.getElementById('password').style.borderColor = '#ef4444';
-                document.getElementById('confirmPassword').style.borderColor = '#ef4444';
-                return; // Impede a submissão se as senhas não baterem
-            }
-            
-            // Garante que validateForm exista antes de chamar
-            if (typeof validateForm === 'function' && validateForm('cadastroForm')) {
-                alert('Cadastro realizado com sucesso! Bem-vinda(o)!');
-                // Idealmente, redirecionar para login ou dashboard
-                window.location.href = 'login.html'; 
-            } else if (typeof validateForm !== 'function') {
-                // Se validateForm não existir, prossegue sem validar (ou adicione um erro)
-                console.warn('Função validateForm não encontrada. Procedendo sem validação de formulário completa.');
-                alert('Cadastro realizado com sucesso (sem validação completa)! Bem-vinda(o)!');
-                window.location.href = 'login.html';
-            }
-            // Se validateForm existir e retornar false, nada acontece aqui,
-            // pois a própria validateForm já deve ter indicado os erros.
-        }
-    </script>
+    </div> 
+    <script src="../js/script.js"></script>
+    <script src="../js/cadastro.js"></script>   
 </body>
 </html>

@@ -34,8 +34,8 @@
     <div class="content-center-wrapper"> 
         <main class="form-container">
             <h1 class="form-title">Login</h1>
-
-            <form id="loginForm" onsubmit="handleLogin(event)">
+            <div id="mensagem" style="text-align: center; margin-bottom: 1rem; color: red;"></div>
+            <form id="loginForm">
                 <div class="form-group">
                     <label for="email" class="form-label">Email</label>
                     <input id="email" type="email" class="form-input" required>
@@ -56,20 +56,6 @@
     </div>
     
     <script src="../js/script.js"></script>
-    <script>
-        function handleLogin(event) {
-            event.preventDefault();
-            if (typeof validateForm === 'function' && validateForm('loginForm')) {
-                alert('Login realizado com sucesso!');
-                window.location.href = 'dashboard.html';
-            } else if (typeof validateForm !== 'function') {
-                // Fallback se validateForm não estiver definida (idealmente, ela sempre estaria)
-                console.warn('Função validateForm não definida. Login prosseguindo sem validação completa.');
-                alert('Login realizado com sucesso! (sem validação completa)');
-                window.location.href = 'dashboard.html';
-            }
-            // Se validateForm existir e retornar false, a lógica de erro já está na validateForm.
-        }
-    </script>
+    <script src="../js/login.js"></script>
 </body>
 </html>

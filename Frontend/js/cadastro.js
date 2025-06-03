@@ -3,14 +3,14 @@ const backendUrl = 'http://localhost:3006/api/auth';
 document.getElementById('cadastroForm').addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    const nomeCompleto = document.getElementById('nomeCompleto').value;
+    const nomeCompletoValue = document.getElementById('NomeCompleto').value;
     const email = document.getElementById('email').value;
     const telefone = document.getElementById('telefone').value;
-    const senha = document.getElementById('senha').value;
+    const senha = document.getElementById('password').value;
     const mensagemDiv = document.getElementById('mensagem');
 
     const dadosUsuario = {
-        nomeCompleto,
+        nomeCompleto: nomeCompletoValue,
         email,
         telefone,
         senha
@@ -28,10 +28,25 @@ document.getElementById('cadastroForm').addEventListener('submit', async functio
         const resultado = await response.json();
 
         if (response.ok) {
-            mensagemDiv.textContent = `Cadastro bem-sucedido! ID do usuário: ${resultado.userId}`;
+            mensagemDiv.textContent = `Cadastro bem-sucedido! ID do usuário: ${resultado.userId}.`;
             mensagemDiv.style.color = 'green';
             document.getElementById('cadastroForm').reset();
-            window.location.href = 'login.html';
+
+            let segundosParaRedirecionar = 10;
+            const redirecionamentoMsgSpan = document.createElement('span');
+            redirecionamentoMsgSpan.id = 'contadorRedirecionamento';
+            redirecionamentoMsgSpan.textContent = ` Redirecionando para login em ${segundosParaRedirecionar}...`;
+            mensagemDiv.appendChild(redirecionamentoMsgSpan);
+
+            const contadorInterval = setInterval(() => {
+                segundosParaRedirecionar--;
+                redirecionamentoMsgSpan.textContent = ` Redirecionando para login em ${segundosParaRedirecionar}...`;
+
+                if (segundosParaRedirecionar <= 0) {
+                    clearInterval(contadorInterval);
+                    window.location.href = 'login.html';
+                }
+            }, 1000);
         } else {
             mensagemDiv.textContent = `Erro: ${resultado.message || response.statusText}`;
             mensagemDiv.style.color = 'red';
