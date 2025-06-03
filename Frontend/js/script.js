@@ -1,3 +1,57 @@
+// No início do seu script.js, ou fora de qualquer função se for usada por onclicks inline:
+function showTab(tabId, clickedButton) {
+    const tabContents = document.querySelectorAll('.dashboard-main-content .tab-content');
+    tabContents.forEach(content => {
+        content.classList.remove('active');
+    });
+
+    const tabTriggers = document.querySelectorAll('.dashboard-main-content .tab-trigger');
+    tabTriggers.forEach(trigger => {
+        trigger.classList.remove('active');
+    });
+
+    const selectedTabContent = document.getElementById(tabId);
+    if (selectedTabContent) {
+        selectedTabContent.classList.add('active');
+    }
+    if (clickedButton) { // Verifica se o botão foi passado
+        clickedButton.classList.add('active');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // ... (seu código existente: toggleMobileMenu, validateForm, modal, etc.) ...
+
+    // --- LÓGICA DAS ABAS DO DASHBOARD ---
+    const tabTriggers = document.querySelectorAll('.dashboard-main-content .tab-trigger');
+    if (tabTriggers.length > 0) {
+        // Configura a primeira aba como ativa por padrão, se nenhuma estiver
+        constisActiveTab = document.querySelector('.dashboard-main-content .tab-trigger.active');
+        if (!isActiveTab && tabTriggers[0]) {
+            tabTriggers[0].classList.add('active');
+            const firstTabId = tabTriggers[0].getAttribute('data-tab');
+            if (firstTabId) {
+                const firstTabContent = document.getElementById(firstTabId);
+                if (firstTabContent) {
+                    firstTabContent.classList.add('active');
+                }
+            }
+        }
+
+        tabTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                showTab(tabId, this);
+            });
+        });
+    }
+
+    // ... (resto do seu DOMContentLoaded) ...
+});
+
+
+
+
 function toggleMobileMenu() {
     const mobileNav = document.getElementById('mobileNav');
     if (mobileNav) {
