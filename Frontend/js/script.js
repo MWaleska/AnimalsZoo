@@ -190,7 +190,163 @@ document.addEventListener('DOMContentLoaded', function() {
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
+// No seu script.js
 
+// Certifique-se que estas variáveis estejam acessíveis globalmente no script ou dentro do DOMContentLoaded
+let currentImageIndex = 0;
+let galleryImages = []; // Array para guardar as informações das imagens da galeria
+
+/**
+ * Abre um modal de imagem com navegação.
+ * @param {number} index - O índice da imagem a ser exibida.
+ */
+function openImageModalWithNavigation(index) {
+    const existingModal = document.querySelector('.image-modal-overlay');
+    if (existingModal) {
+        existingModal.remove(); // Remove qualquer modal existente para evitar duplicação
+    }
+
+    if (index < 0 || index >= galleryImages.length) {
+        console.error("Índice da imagem da galeria fora do limite.");
+        return;
+    }
+
+    currentImageIndex = index;
+    const imageInfo = galleryImages[currentImageIndex];
+
+    const modal = document.createElement('div');
+    modal.classList.add('image-modal-overlay');
+    // Adiciona um ID para facilitar a remoção se necessário
+    modal.id = 'galleryImageModal'; 
+
+    const img = document.createElement('img');
+    img.src = imageInfo.src;
+    img.alt = imageInfo.alt;
+    img.classList.add('image-modal-content');
+
+    // Botões de Navegação
+    const prevButton = document.createElement('button');
+    prevButton.classList.add('modal-nav-button', 'prev');
+    prevButton.innerHTML = '&#10094;'; // Seta para esquerda
+    prevButton.setAttribute('aria-label', 'Imagem anterior');
+    prevButton.onclick = (e) => {
+        e.stopPropagation(); // Impede que o clique feche o modal
+        navigateGallery(-1);
+    };
+
+    const nextButton = document.createElement('button');
+    nextButton.classList.add('modal-nav-button', 'next');
+    nextButton.innerHTML = '&#10095;'; // Seta para direita
+    nextButton.setAttribute('aria-label', 'Próxima imagem');
+    nextButton.onclick = (e) => {
+        e.stopPropagation(); // Impede que o clique feche o modal
+        navigateGallery(1);
+    };
+
+    // Botão de fechar (opcional, mas bom para usabilidade)
+    const closeButton = document.createElement('button');
+    closeButton.classList.add('modal-close-button');
+    closeButton.innerHTML = '&times;'; // 'X' para fechar
+    closeButton.setAttribute('aria-label', 'Fechar modal');
+    closeButton.onclick = (e) => {
+        e.stopPropagation();
+        closeModal();
+    };
+
+    modal.appendChild(closeButton);
+    modal.appendChild(prevButton);
+    modal.appendChild(img);
+    modal.appendChild(nextButton);
+    document.body.appendChild(modal);
+    document.body.classList.add('no-scroll');
+
+    requestAnimationFrame(() => {
+        modal.classList.add('show');
+    });
+
+    // Atualiza a visibilidade dos botões de navegação
+    updateNavButtons();
+
+    // Função para fechar o modal (pode ser a sua 'closeModal' adaptada)
+    function closeModal() {
+        modal.classList.remove('show');
+        modal.addEventListener('transitionend', function handleTransitionEnd() {
+            if (document.body.contains(modal)) {
+                document.body.removeChild(modal);
+            }
+            if (!document.querySelector('.mobile-nav.show')) { // Verifica se outro modal (menu) está aberto
+                 document.body.classList.remove('no-scroll');
+            }
+            modal.removeEventListener('transitionend', handleTransitionEnd);
+            document.removeEventListener('keydown', handleEscKeyModal); // Remove listener do Esc
+        }, { once: true });
+    }
+
+    // Fecha com clique no overlay (fora da imagem e botões)
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) { // Só fecha se clicar DIRETAMENTE no overlay
+            closeModal();
+        }
+    });
+    
+    // Fecha com a tecla Escape
+    function handleEscKeyModal(event) {
+        if (event.key === 'Escape' && modal.classList.contains('show')) {
+            closeModal();
+        }
+    }
+    document.addEventListener('keydown', handleEscKeyModal);
+}
+
+function updateNavButtons() {
+    const modal = document.getElementById('galleryImageModal');
+    if (!modal) return;
+
+    const prevButton = modal.querySelector('.modal-nav-button.prev');
+    const nextButton = modal.querySelector('.modal-nav-button.next');
+
+    if (prevButton) prevButton.style.display = (currentImageIndex === 0) ? 'none' : 'block';
+    if (nextButton) nextButton.style.display = (currentImageIndex === galleryImages.length - 1) ? 'none' : 'block';
+}
+
+
+function navigateGallery(direction) {
+    const newIndex = currentImageIndex + direction;
+    if (newIndex >= 0 && newIndex < galleryImages.length) {
+        currentImageIndex = newIndex;
+        const modalImg = document.querySelector('#galleryImageModal .image-modal-content');
+        if (modalImg) {
+            modalImg.src = galleryImages[currentImageIndex].src;
+            modalImg.alt = galleryImages[currentImageIndex].alt;
+        }
+        updateNavButtons();
+    }
+}
+
+
+    // ... (seu código existente para menu, ano, etc.)
+
+    // --- FUNCIONALIDADE DA GALERIA DE IMAGENS (Modal com Navegação) ---
+    const galleryGridItems = document.querySelectorAll('.gallery-item');
+    // Limpa o array e preenche com as imagens da galeria atual
+    galleryImages = []; 
+    galleryGridItems.forEach(item => {
+        const imgElement = item.querySelector('img');
+        if (imgElement) {
+            galleryImages.push({ src: imgElement.src, alt: imgElement.alt });
+            item.addEventListener('click', function() {
+                // Encontra o índice da imagem clicada
+                const clickedSrc = imgElement.src;
+                const imageIndex = galleryImages.findIndex(imgInfo => imgInfo.src === clickedSrc);
+                if (imageIndex !== -1) {
+                    openImageModalWithNavigation(imageIndex);
+                }
+            });
+        }
+    });
+
+    // ... (resto do seu código DOMContentLoaded, como busca, etc.)
+});
     // --- Validação para Formulários (Exemplo) ---
     // Seus formulários (login, cadastro, contato) já devem ter o `onsubmit` chamando
     // uma função que, por sua vez, chama `validateForm('IDdoForm')`.
@@ -209,4 +365,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     */
-});

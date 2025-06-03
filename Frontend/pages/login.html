@@ -7,42 +7,53 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header class="header">
-        <div></div>
-        <div class="header-center">
-            <img src="../img/logo.png" alt="PetsBemEstar Logo" class="header-logo">
-            <span class="header-title">PetsBemEstar</span>
+<body class="body-full-center"> <header class="header">
+        <div class="header-left-placeholder"></div> <div class="header-center">
+            <a href="index.html" class="header-logo-link"> <img src="../img/logo.png" alt="PetsBemEstar Logo" class="header-logo">
+                <span class="header-title">PetsBemEstar</span>
+            </a>
         </div>
         <div class="header-actions">
-            <button class="menu-toggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <button class="menu-toggle" onclick="toggleMobileMenu()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"> 
                     <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="currentColor"/>
                 </svg>
             </button>
         </div>
     </header>
-    <main class="form-container">
-        <h1 class="form-title">Login</h1>
 
-        <form id="loginForm" onsubmit="handleLogin(event)">
-            <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input id="email" type="email" class="form-input" required>
+    <div id="mobileNav" class="mobile-nav">
+        <a href="index.html" class="mobile-nav-link">Início</a>
+        <a href="servicos.html" class="mobile-nav-link">Serviços</a>
+        <a href="sobre.html" class="mobile-nav-link">Sobre</a>
+        <a href="contato.html" class="mobile-nav-link">Contato</a>
+        <hr class="mobile-nav-divider">
+        <a href="login.html" class="mobile-nav-link active">Login</a> <a href="cadastro.html" class="mobile-nav-link mobile-nav-signup">Cadastre-se</a>
+    </div>
+
+    <div class="content-center-wrapper"> 
+        <main class="form-container">
+            <h1 class="form-title">Login</h1>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" type="email" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Senha</label>
+                    <input id="password" type="password" class="form-input" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
+            </form>
+
+            <div class="form-footer">
+                <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
             </div>
-
-            <div class="form-group">
-                <label for="password" class="form-label">Senha</label>
-                <input id="password" type="password" class="form-input" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
-        </form>
-
-        <div class="form-footer">
-            <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
-        </div>
-    </main>
+        </main>
+    </div>
     
     <script src="../js/script.js"></script>
     <script>
@@ -52,9 +63,12 @@
                 alert('Login realizado com sucesso!');
                 window.location.href = 'dashboard.html';
             } else if (typeof validateForm !== 'function') {
-                alert('Login realizado com sucesso!');
+                // Fallback se validateForm não estiver definida (idealmente, ela sempre estaria)
+                console.warn('Função validateForm não definida. Login prosseguindo sem validação completa.');
+                alert('Login realizado com sucesso! (sem validação completa)');
                 window.location.href = 'dashboard.html';
             }
+            // Se validateForm existir e retornar false, a lógica de erro já está na validateForm.
         }
     </script>
 </body>
