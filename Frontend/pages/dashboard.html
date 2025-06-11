@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PetsBemEstar</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="dashboard-container"> <div class="header-center"> <a href="index.html" class="header-logo-link"> <img src="../img/logo.png" alt="PetsBemEstar Logo" class="header-logo">
+                    <span class="header-title">PetsBemEstar</span>
+                </a>
+            </div>
+            <div class="user-info">
+                <span id="userNameDisplayHeader">Olá, !</span>
+                <div class="avatar" id="userAvatarHeader">XX</div>
+                <a href="index.html" class="btn btn-outline btn-small logout-button">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-content">
+        <div class="container"> <div class="dashboard-grid">
+                <aside class="dashboard-sidebar">
+                    <div class="sidebar-card user-profile-card">
+                        <div class="card-header">
+                            <div class="large-avatar">MS</div>
+                            <h3 class="user-name">Maria Silva</h3>
+                            <p class="user-since">Cliente desde 2023</p>
+                        </div>
+                        <div class="card-content user-contact-info">
+                            <div class="contact-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                <span>maria@email.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                <span>(11) 99999-9999</span>
+                            </div>
+                            <div class="contact-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+                                <span>Rua das Flores, 123 - São Paulo</span>
+                            </div>
+                            <button class="btn btn-outline edit-profile-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                Editar Perfil
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sidebar-card quick-actions-card">
+                        <div class="card-header">
+                            <h3 class="quick-actions-title">Ações Rápidas</h3>
+                        </div>
+                        <div class="card-content quick-actions-content">
+                            <button class="btn btn-primary quick-action-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                Agendar Serviço
+                            </button>
+                            <button class="btn btn-outline quick-action-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                Adicionar Pet
+                            </button>
+                            <button class="btn btn-outline quick-action-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                Ver Calendário
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+                <div class="dashboard-main-content">
+                    <div class="tabs">
+                        <div class="tabs-list">
+                            <button class="tab-trigger active" data-tab="pets">Meus Pets</button>
+                            <button class="tab-trigger" data-tab="agendamentos">Agendamentos</button>
+                            <button class="tab-trigger" data-tab="historico">Histórico</button>
+                            <button class="tab-trigger" data-tab="favoritos">Favoritos</button>
+                        </div>
+                        <div id="pets" class="tab-content active">
+                            <div class="tab-content-header">
+                                <h2 class="tab-content-title">Meus Pets</h2>
+                                <button class="btn btn-primary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                    Adicionar Pet
+                                </button>
+                            </div>
+                            <div class="pets-grid">
+                                <div class="pet-card">
+                                    <div class="pet-info">
+                                        <div class="pet-avatar">R</div>
+                                        <div>
+                                            <h3 class="pet-name">Rex</h3>
+                                            <p class="pet-breed-age">Golden Retriever • 3 anos</p>
+                                            <span class="status-badge status-healthy">Saudável</span>
+                                        </div>
+                                    </div>
+                                    <div class="info-grid">
+                                        <div class="info-item"><span class="info-label">Espécie:</span><span>Cão</span></div>
+                                        <div class="info-item"><span class="info-label">Peso:</span><span>25kg</span></div>
+                                        <div class="info-item"><span class="info-label">Próxima consulta:</span><span>15/02/2025</span></div>
+                                    </div>
+                                    <div class="button-group">
+                                        <button class="btn btn-small btn-outline"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Editar</button>
+                                        <button class="btn btn-small btn-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Agendar</button>
+                                    </div>
+                                </div>
+                                <div class="pet-card">
+                                    <div class="pet-info">
+                                        <div class="pet-avatar">L</div>
+                                        <div>
+                                            <h3 class="pet-name">Luna</h3>
+                                            <p class="pet-breed-age">Persa • 2 anos</p>
+                                            <span class="status-badge status-treatment">Em tratamento</span>
+                                        </div>
+                                    </div>
+                                    <div class="info-grid">
+                                        <div class="info-item"><span class="info-label">Espécie:</span><span>Gato</span></div>
+                                        <div class="info-item"><span class="info-label">Peso:</span><span>4kg</span></div>
+                                        <div class="info-item"><span class="info-label">Próxima consulta:</span><span>20/02/2025</span></div>
+                                    </div>
+                                    <div class="button-group">
+                                        <button class="btn btn-small btn-outline"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Editar</button>
+                                        <button class="btn btn-small btn-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Agendar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="agendamentos" class="tab-content">
+                            <div class="tab-content-header">
+                                <h2 class="tab-content-title">Próximos Agendamentos</h2>
+                                <button class="btn btn-primary">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                    Novo Agendamento
+                                </button>
+                            </div>
+                            <div class="appointment-card">
+                                <div class="appointment-header">
+                                    <div class="appointment-icon-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C27C3D" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                                    <div>
+                                        <h3 class="appointment-title">Consulta Veterinária - Rex</h3>
+                                        <p class="appointment-date-time">15 de Fevereiro de 2025, 10:00</p>
+                                    </div>
+                                    <span class="status-badge status-confirmed">Confirmado</span>
+                                </div>
+                                <div class="button-group appointment-actions">
+                                    <button class="btn btn-small btn-outline">Detalhes</button>
+                                    <button class="btn btn-small btn-danger">Cancelar</button>
+                                </div>
+                            </div>
+                            <div class="appointment-card">
+                                <div class="appointment-header">
+                                    <div class="appointment-icon-circle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C27C3D" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+                                    <div>
+                                        <h3 class="appointment-title">Banho e Tosa - Luna</h3>
+                                        <p class="appointment-date-time">20 de Fevereiro de 2025, 14:30</p>
+                                    </div>
+                                    <span class="status-badge status-pending">Pendente</span>
+                                </div>
+                                <div class="button-group appointment-actions">
+                                    <button class="btn btn-small btn-outline">Detalhes</button>
+                                    <button class="btn btn-small btn-danger">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="historico" class="tab-content">
+                            <h2 class="tab-content-title">Histórico de Serviços</h2>
+                            <p class="empty-state-message">Nenhum histórico disponível ainda.</p>
+                        </div>
+                        <div id="favoritos" class="tab-content">
+                            <h2 class="tab-content-title">Meus Favoritos</h2>
+                            <p class="empty-state-message">Nenhum serviço favorito adicionado ainda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const token = localStorage.getItem('tokenUsuario');
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const logoutButton = document.querySelector('.logout-button');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            localStorage.removeItem('tokenUsuario');
+            localStorage.removeItem('usuarioLogado');
+            window.location.href = 'index.html';
+        });
+    }
+
+    const editProfileButton = document.querySelector('.edit-profile-btn');
+    const editProfileModal = document.getElementById('editProfileModal');
+    const closeModalButton = document.querySelector('#editProfileModal .close-button');
+
+    if (editProfileButton && editProfileModal) {
+        editProfileButton.addEventListener('click', function() {
+            editProfileModal.style.display = 'block';
+        });
+    }
+
+    if (closeModalButton && editProfileModal) {
+        closeModalButton.addEventListener('click', function() {
+            editProfileModal.style.display = 'none';
+        });
+    }
+
+    window.addEventListener('click', function(event) {
+        if (event.target == editProfileModal) {
+            editProfileModal.style.display = 'none';
+        }
+    });
+
+    const tabTriggers = document.querySelectorAll('.tab-trigger');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function() {
+            tabTriggers.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            const tabId = this.getAttribute('data-tab');
+            const activeTabContent = document.getElementById(tabId);
+            if (activeTabContent) {
+                activeTabContent.classList.add('active');
+            }
+        });
+    });
+
+    const activeTrigger = document.querySelector('.tab-trigger.active');
+    if (!activeTrigger && tabTriggers.length > 0) {
+        tabTriggers[0].click();
+    } else if (activeTrigger) {
+        const initialTabId = activeTrigger.getAttribute('data-tab');
+        const initialActiveTabContent = document.getElementById(initialTabId);
+        if (initialActiveTabContent) {
+            tabContents.forEach(c => c.classList.remove('active'));
+            initialActiveTabContent.classList.add('active');
+        }
+    }
+});
+</script>
+</body>
+</html>
