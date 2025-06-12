@@ -37,3 +37,18 @@ CREATE TABLE IF NOT EXISTS mensagens_contato (
     data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     lido BOOLEAN DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS agendamentos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pet_id INT NOT NULL,
+    tutor_id INT NOT NULL,
+    servico VARCHAR(255) NOT NULL,
+    data_agendamento DATE NOT NULL,
+    hora_agendamento TIME NOT NULL,
+    status VARCHAR(50) DEFAULT 'Confirmado',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE,
+    FOREIGN KEY (tutor_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    UNIQUE KEY agendamento_unico_pet_horario (pet_id, data_agendamento, hora_agendamento)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
