@@ -1,18 +1,17 @@
-const backendBaseUrl = 'http://localhost:3006/api';
+// A variável 'backendBaseUrl' agora é global, declarada em script.js
 const mensagemPerfilDiv = document.getElementById('mensagemPerfil');
 
-// Elementos para exibir dados do perfil
-const displayNomeCompleto = document.getElementById('displayNomeCompleto');
-const displayEmail = document.getElementById('displayEmail');
-const displayTelefone = document.getElementById('displayTelefone');
-const displayDataCadastro = document.getElementById('displayDataCadastro');
-const displayDataAtualizacao = document.getElementById('displayDataAtualizacao');
+const userNomeSidebar = document.getElementById('userNameSidebar');
+const userEmailSidebar = document.getElementById('userEmailSidebar');
+const userPhoneSidebar = document.getElementById('userPhoneSidebar');
+const userSince = document.getElementById('userSince');
+const userAvatarSidebar = document.getElementById('userAvatarSidebar');
 
-// Campos do formulário de edição
 const nomeCompletoEditarInput = document.getElementById('nomeCompletoEditar');
 const emailEditarInput = document.getElementById('emailEditar');
 const telefoneEditarInput = document.getElementById('telefoneEditar');
 const formEditarPerfil = document.getElementById('formEditarPerfil');
+const editProfileModal = document.getElementById('editProfileModal');
 
 function getToken() {
     return localStorage.getItem('tokenUsuario');
@@ -22,61 +21,41 @@ function exibirMensagemPerfil(texto, tipo = 'info') {
     if (mensagemPerfilDiv) {
         mensagemPerfilDiv.textContent = texto;
         mensagemPerfilDiv.className = `mensagem ${tipo}`;
-        setTimeout(() => {
-            mensagemPerfilDiv.textContent = '';
-            mensagemPerfilDiv.className = 'mensagem';
-        }, 5000);
     } else {
         console.log(`MENSAGEM PERFIL (${tipo}): ${texto}`);
     }
 }
 
-// Função para buscar e exibir os dados do perfil do usuário
+
 async function carregarDadosPerfil() {
     const token = getToken();
-    if (!token) {
-        exibirMensagemPerfil('Você precisa estar logado para ver seu perfil.', 'erro');
-        // Redirecionar para login ou desabilitar edição
-        // window.location.href = 'login.html';
-        if (formEditarPerfil) formEditarPerfil.style.display = 'none'; // Esconde o form de edição
-        return;
-    }
+    if (!token) return;
 
     try {
-        const response = await fetch(`${backendBaseUrl}/usuarios/me`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
+        const response = await fetch(`${backendBaseUrl}/usuarios/me`, { headers: { 'Authorization': `Bearer ${token}` } });
+        if (!response.ok) throw new Error('Falha ao buscar perfil');
 
-        if (response.ok) {
-            const usuario = await response.json();
-            // Exibir dados
-            if (displayNomeCompleto) displayNomeCompleto.textContent = usuario.nome_completo || 'Não informado';
-            if (displayEmail) displayEmail.textContent = usuario.email || 'Não informado';
-            if (displayTelefone) displayTelefone.textContent = usuario.telefone || 'Não informado';
-            // Formatar datas (opcional, mas recomendado)
-            if (displayDataCadastro) displayDataCadastro.textContent = usuario.created_at ? new Date(usuario.created_at).toLocaleDateString('pt-BR') : 'Não informado';
-            if (displayDataAtualizacao) displayDataAtualizacao.textContent = usuario.updated_at ? new Date(usuario.updated_at).toLocaleDateString('pt-BR') : 'Não informado';
+        const usuario = await response.json();
+        
+        // Verifique se estas linhas estão corretas no seu código:
+        document.getElementById('userNameSidebar').textContent = usuario.nome_completo;
+        document.getElementById('userEmailSidebar').textContent = usuario.email;
 
-            // Preencher formulário de edição
-            if (nomeCompletoEditarInput) nomeCompletoEditarInput.value = usuario.nome_completo || '';
-            if (emailEditarInput) emailEditarInput.value = usuario.email || '';
-            if (telefoneEditarInput) telefoneEditarInput.value = usuario.telefone || '';
-        } else {
-            const erro = await response.json();
-            exibirMensagemPerfil(`Erro ao carregar perfil: ${erro.message || response.statusText}`, 'erro');
-            if (formEditarPerfil) formEditarPerfil.style.display = 'none';
+        // ESTA É A LINHA MAIS IMPORTANTE PARA ESTE BUG
+        // Garanta que ela está usando 'usuario.telefone'
+        document.getElementById('userPhoneSidebar').textContent = usuario.telefone || 'Não informado';
+
+        // O resto da função...
+        if(document.getElementById('userSince')) document.getElementById('userSince').textContent = `Cliente desde ${new Date(usuario.created_at).toLocaleDateString('pt-BR')}`;
+        if(document.getElementById('userAvatarSidebar')) {
+             const iniciais = (usuario.nome_completo.split(' ')[0][0] + (usuario.nome_completo.split(' ').length > 1 ? usuario.nome_completo.split(' ').pop()[0] : '')).toUpperCase();
+             document.getElementById('userAvatarSidebar').textContent = iniciais;
         }
     } catch (error) {
-        console.error('Erro na requisição de carregar perfil:', error);
-        exibirMensagemPerfil('Erro de conexão ao carregar dados do perfil.', 'erro');
-        if (formEditarPerfil) formEditarPerfil.style.display = 'none';
+        console.error("Erro ao carregar perfil:", error);
     }
 }
 
-// Event listener para o formulário de edição
 if (formEditarPerfil) {
     formEditarPerfil.addEventListener('submit', async function(event) {
         event.preventDefault();
@@ -93,33 +72,10 @@ if (formEditarPerfil) {
             telefone: telefoneEditarInput.value.trim()
         };
 
-        // Enviar apenas os campos que foram preenchidos/alterados
-        const dadosNaoVazios = {};
-        let algumDadoAlterado = false;
-        if (dadosParaAtualizar.nome_completo) {
-             dadosNaoVazios.nome_completo = dadosParaAtualizar.nome_completo;
-             algumDadoAlterado = true;
-        }
-        if (dadosParaAtualizar.email) {
-            dadosNaoVazios.email = dadosParaAtualizar.email;
-            algumDadoAlterado = true;
-        }
-        if (dadosParaAtualizar.telefone) {
-            dadosNaoVazios.telefone = dadosParaAtualizar.telefone;
-            algumDadoAlterado = true;
-        }
-
-
-        if (!algumDadoAlterado) {
-            exibirMensagemPerfil('Nenhum dado para atualizar.', 'info');
-            return;
-        }
-         // Validação de email simples
-        if (dadosNaoVazios.email && !/^\S+@\S+\.\S+$/.test(dadosNaoVazios.email)) {
+        if (dadosParaAtualizar.email && !/^\S+@\S+\.\S+$/.test(dadosParaAtualizar.email)) {
             exibirMensagemPerfil('Formato de email inválido.', 'erro');
             return;
         }
-
 
         try {
             const response = await fetch(`${backendBaseUrl}/usuarios/me`, {
@@ -128,23 +84,23 @@ if (formEditarPerfil) {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify(dadosNaoVazios)
+                body: JSON.stringify(dadosParaAtualizar)
             });
 
             const resultado = await response.json();
 
             if (response.ok) {
                 exibirMensagemPerfil('Perfil atualizado com sucesso!', 'sucesso');
-                // Atualizar os dados exibidos na tela e no localStorage (se necessário)
-                if (resultado.usuario) {
-                    if (displayNomeCompleto) displayNomeCompleto.textContent = resultado.usuario.nome_completo || 'Não informado';
-                    if (displayEmail) displayEmail.textContent = resultado.usuario.email || 'Não informado';
-                    if (displayTelefone) displayTelefone.textContent = resultado.usuario.telefone || 'Não informado';
-                    if (displayDataAtualizacao) displayDataAtualizacao.textContent = resultado.usuario.updated_at ? new Date(resultado.usuario.updated_at).toLocaleDateString('pt-BR') : 'Não informado';
+                
+                localStorage.setItem('usuarioLogado', JSON.stringify(resultado.usuario));
 
-                    // Se você armazena dados do usuário no localStorage além do token, atualize-os também.
-                    // Ex: localStorage.setItem('usuarioLogado', JSON.stringify(resultado.usuario));
-                }
+                await carregarDadosPerfil();
+                setTimeout(() => {
+                    if(editProfileModal) editProfileModal.style.display = 'none';
+                    mensagemPerfilDiv.className = 'mensagem';
+                    mensagemPerfilDiv.textContent = '';
+                }, 2000);
+
             } else {
                 exibirMensagemPerfil(`Erro ao atualizar perfil: ${resultado.message || response.statusText}`, 'erro');
             }
@@ -155,5 +111,6 @@ if (formEditarPerfil) {
     });
 }
 
-// Carregar os dados do perfil quando a página carregar
-window.addEventListener('DOMContentLoaded', carregarDadosPerfil);
+if (window.location.pathname.endsWith('dashboard.html')) {
+    window.addEventListener('DOMContentLoaded', carregarDadosPerfil);
+}

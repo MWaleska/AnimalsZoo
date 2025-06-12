@@ -7,35 +7,47 @@
     <title>Contato - PetsBemEstar</title>
     <link rel="stylesheet" href="../css/styles.css"> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <header class="header">
-        <div class="header-left-placeholder"></div>
-        <div class="header-center">
-            <a href="index.html" class="header-logo-link">
-                <img src="../img/logo.png" alt="PetsBemEstar Logo" class="header-logo">
-                <span class="header-title">PetsBemEstar</span>
-            </a>
-        </div>
-        <div class="header-actions">
+    <div class="header-left-placeholder"></div>
+    <div class="header-center">
+        <a href="index.html" class="header-logo-link">
+            <img src="../img/logo.png" alt="PetsBemEstar Logo" class="header-logo">
+            <span class="header-title">PetsBemEstar</span>
+        </a>
+    </div>
+    <div class="header-actions">
+        <div id="logged-out-view">
             <a href="login.html" class="header-link header-link-login">Login</a>
             <a href="cadastro.html" class="header-button header-button-signup">Cadastre-se</a>
-            <button class="menu-toggle" onclick="toggleMobileMenu()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="currentColor" />
-                </svg>
-            </button>
         </div>
-    </header>
+        <div id="logged-in-view" style="display: none;">
+            <span id="header-welcome-message" class="header-welcome"></span>
+            <a href="dashboard.html" class="header-button header-button-dashboard">Meu Painel</a>
+            <a href="#" class="header-link header-link-login logout-link">Sair</a>
+        </div>
+        <button class="menu-toggle" onclick="toggleMobileMenu()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="currentColor" />
+            </svg>
+        </button>
+    </div>
+</header>
 
     <div id="mobileNav" class="mobile-nav">
         <a href="index.html" class="mobile-nav-link">Início</a>
         <a href="servicos.html" class="mobile-nav-link">Serviços</a>
-        <a href="contato.html" class="mobile-nav-link active">Contato</a>
+        <a href="contato.html" class="mobile-nav-link">Contato</a>
         <a href="sobre.html" class="mobile-nav-link">Sobre</a>
         <hr class="mobile-nav-divider">
-        <a href="login.html" class="mobile-nav-link">Login</a>
-        <a href="cadastro.html" class="mobile-nav-link mobile-nav-signup">Cadastre-se</a>
+        <div id="mobile-logged-out-view">
+            <a href="login.html" class="mobile-nav-link">Login</a>
+            <a href="cadastro.html" class="mobile-nav-link mobile-nav-signup">Cadastre-se</a>
+        </div>
+        <div id="mobile-logged-in-view" style="display: none;">
+            <a href="dashboard.html" class="mobile-nav-link">Meu Painel</a>
+            <a href="#" class="mobile-nav-link logout-link">Sair</a>
+        </div>
     </div>
 
     <main class="container page-content-top-padding">
@@ -220,7 +232,7 @@
         </div>
     </footer>
 
-    <script src="../js/script.js"></script> 
-</body>
-
+        <script src="../js/script.js"></script>
+        <script src="../js/auth.js"></script> 
+    </body>
 </html>
