@@ -2287,3 +2287,10 @@ ul {
 
   
 }
+
+#map {
+    height: 350px;
+    width: 100%;
+    border-radius: 0.5rem;
+    background-color: #e0e0e0; /* Cor de fundo enquanto o mapa carrega */
+}
