@@ -8,11 +8,15 @@ PetsBemEstar é uma plataforma full-stack projetada para conectar tutores de ani
 
 ## ✨ Funcionalidades Principais
 
-* **Autenticação de Usuários**: Sistema seguro de cadastro e login para tutores.
-* **Gerenciamento de Pets**: Funcionalidade CRUD (Criar, Ler, Atualizar, Deletar) para os animais de estimação dos usuários.
-* **Dashboard do Usuário**: Uma área logada onde o tutor pode ver seus pets, agendamentos e informações de perfil.
-* **Listagem de Serviços**: Página com os serviços oferecidos, incluindo detalhes como preço, duração e avaliações.
-* **Formulário de Contato**: Um canal direto para que os usuários possam enviar mensagens e tirar dúvidas.
+* **Autenticação Segura**: Sistema de cadastro e login para tutores com senhas criptografadas (`bcryptjs`) e autenticação baseada em Token (`JWT`).
+* **Gerenciamento de Pets**: Funcionalidade CRUD (Criar, Ler, Atualizar, Deletar) completa para que os usuários possam gerenciar os perfis de seus animais de estimação.
+* **Dashboard do Usuário**: Uma área de cliente completa onde o tutor pode:
+    * Visualizar e gerenciar seus pets.
+    * Ver seus agendamentos futuros.
+    * Editar suas informações de perfil (nome, e-mail, telefone).
+* **Sistema de Agendamento**: Usuários podem agendar serviços para seus pets, escolhendo o animal, o serviço, a data e o horário. Os agendamentos podem ser visualizados e cancelados pelo dashboard.
+* **Listagem de Serviços**: Página com os serviços oferecidos, incluindo detalhes como preço, duração e avaliações, com botões que direcionam para a tela de agendamento.
+* **Formulário de Contato**: Um canal direto para que os usuários possam enviar mensagens e tirar dúvidas, com o armazenamento das mensagens no banco de dados.
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -27,6 +31,7 @@ Este projeto foi construído com as seguintes tecnologias:
     * Express.js
     * `jsonwebtoken` para autenticação com Tokens JWT
     * `bcryptjs` para hashing de senhas
+    * `cors` para permitir a comunicação entre front-end e back-end
 * **Banco de Dados**:
     * MySQL
 
@@ -84,18 +89,3 @@ O front-end é composto por arquivos estáticos. Basta abrir o arquivo `index.ht
 2.  Abra o arquivo `index.html` com um navegador de sua preferência.
 
 > **Dica**: Para uma melhor experiência de desenvolvimento e para evitar problemas com CORS (apesar de estar habilitado no back-end), recomenda-se usar uma extensão como o "Live Server" no VS Code.
-
-## 🔗 Estrutura de Endpoints da API
-
-A URL base para a API é `http://localhost:3006/api`.
-
-* `POST /api/auth/register` - Registra um novo usuário.
-* `POST /api/auth/login` - Realiza o login e retorna um token JWT.
-* `GET /api/usuarios/me` - Retorna o perfil do usuário logado (rota protegida).
-* `PUT /api/usuarios/me` - Atualiza o perfil do usuário logado (rota protegida).
-* `POST /api/pets` - Cadastra um novo pet.
-* `GET /api/pets` - Lista todos os pets.
-* `GET /api/pets/:id` - Retorna um pet específico.
-* `PUT /api/pets/:id` - Atualiza um pet específico.
-* `DELETE /api/pets/:id` - Deleta um pet específico.
-* `POST /api/contato` - Envia uma mensagem pelo formulário de contato.
