@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - PetsBemEstar</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="dashboard-container"> <div class="header-center"> <a href="index.html" class="header-logo-link"> <img src="../img/logo.png" alt="PetsBemEstar Logo" class="header-logo">
+                    <span class="header-title">PetsBemEstar</span>
+                </a>
+            </div>
+            <div class="user-info">
+                <span id="userNameDisplayHeader">Olá, !</span>
+                <div class="avatar" id="userAvatarHeader"></div>
+                <a href="#" class="btn btn-outline btn-small logout-button">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-content">
+        <div class="container"> <div class="dashboard-grid">
+                <aside class="dashboard-sidebar">
+                    <div class="sidebar-card user-profile-card">
+                        <div class="card-header">
+                            <div class="large-avatar" id="userAvatarSidebar">--</div>
+                            <h3 class="user-name" id="userNameSidebar">Carregando...</h3>
+                            <p class="user-since" id="userSince">Cliente desde...</p>
+                        </div>
+                        <div class="card-content user-contact-info">
+                            <div class="contact-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                <span id="userEmailSidebar">--</span>
+                            </div>
+                            <div class="contact-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                <span id="userPhoneSidebar">--</span>
+                            </div>
+                            <button class="btn btn-outline edit-profile-btn" id="editProfileBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                Editar Perfil
+                            </button>
+                        </div>
+                    </div>
+                    <div class="sidebar-card quick-actions-card">
+                        <div class="card-header">
+                            <h3 class="quick-actions-title">Ações Rápidas</h3>
+                        </div>
+                        <div class="card-content quick-actions-content">
+                            <button class="btn btn-primary quick-action-btn" id="scheduleServiceBtnSidebar">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                Agendar Serviço
+                            </button>
+                            <button class="btn btn-outline quick-action-btn" id="addPetBtnSidebar">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                Adicionar Pet
+                            </button>
+                        </div>
+                    </div>
+                </aside>
+                <main class="dashboard-main-content">
+                    <div class="tabs">
+                        <div class="tabs-list">
+                            <button class="tab-trigger active" onclick="showTab('pets', this)" data-tab="pets">Meus Pets</button>
+                            <button class="tab-trigger" onclick="showTab('agendamentos', this)" data-tab="agendamentos">Agendamentos</button>
+                        </div>
+                        <div id="pets" class="tab-content active">
+                            <div class="tab-content-header">
+                                <h2 class="tab-content-title">Meus Pets</h2>
+                                <button class="btn btn-primary" id="addPetBtnMain">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                    Adicionar Pet
+                                </button>
+                            </div>
+                            <div class="pets-grid" id="petsGrid">
+                                <p class="empty-state-message">Nenhum Pet cadastrado...</p>
+                            </div>
+                        </div>
+                        <div id="agendamentos" class="tab-content">
+                            <div class="tab-content-header">
+                                <h2 class="tab-content-title">Próximos Agendamentos</h2>
+                                <button class="btn btn-primary" id="newAppointmentBtn">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                    Novo Agendamento
+                                </button>
+                            </div>
+                            <div id="appointmentsList">
+                                <p class="empty-state-message">Nenhum agendamento futuro encontrado.</p>
+                            </div>
+
+                        </div>
+                            
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <div id="editProfileModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 class="form-title">Editar Perfil</h2>
+            <div id="mensagemPerfil" class="mensagem"></div>
+            <form id="formEditarPerfil">
+                <div class="form-group">
+                    <label for="nomeCompletoEditar" class="form-label">Nome Completo</label>
+                    <input id="nomeCompletoEditar" type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="emailEditar" class="form-label">Email</label>
+                    <input id="emailEditar" type="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefoneEditar" class="form-label">Telefone</label>
+                    <input id="telefoneEditar" type="tel" class="form-input">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="addPetModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 class="form-title">Adicionar Novo Pet</h2>
+            <div id="mensagemPets" class="mensagem"></div>
+            <form id="formCadastrarPet">
+                <input type="hidden" id="petTutorIdCadastro">
+                <div class="form-group">
+                    <label for="petNomeCadastro" class="form-label">Nome do Pet</label>
+                    <input id="petNomeCadastro" type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="petEspecieCadastro" class="form-label">Espécie</label>
+                    <input id="petEspecieCadastro" type="text" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="petRacaCadastro" class="form-label">Raça</label>
+                    <input id="petRacaCadastro" type="text" class="form-input">
+                </div>
+                 <div class="form-group">
+                    <label for="petSexoCadastro" class="form-label">Sexo</label>
+                    <select id="petSexoCadastro" class="form-input" required>
+                        <option value="Macho">Macho</option>
+                        <option value="Fêmea">Fêmea</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="petIdadeCadastro" class="form-label">Idade (anos)</label>
+                    <input id="petIdadeCadastro" type="number" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="petPesoCadastro" class="form-label">Peso (kg)</label>
+                    <input id="petPesoCadastro" type="number" step="0.1" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="petObservacoesCadastro" class="form-label">Observações</label>
+                    <textarea id="petObservacoesCadastro" class="form-textarea"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Cadastrar Pet</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="scheduleModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 class="form-title">Agendar Serviço</h2>
+            <div id="mensagemAgendamento" class="mensagem"></div>
+            <form id="formAgendarServico">
+                <div class="form-group">
+                    <label for="agendamentoPet" class="form-label">Selecione o Pet</label>
+                    <select id="agendamentoPet" class="form-input" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="agendamentoServico" class="form-label">Selecione o Serviço</label>
+                    <select id="agendamentoServico" class="form-input" required>
+                        <option value="Consulta Veterinária">Consulta Veterinária</option>
+                        <option value="Banho e Tosa">Banho e Tosa</option>
+                        <option value="Day Care">Day Care</option>
+                        <option value="Hospedagem">Hospedagem</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="agendamentoData" class="form-label">Data</label>
+                    <input type="date" id="agendamentoData" class="form-input" required>
+                </div>
+                 <div class="form-group">
+                    <label for="agendamentoHora" class="form-label">Horário</label>
+                    <select id="agendamentoHora" class="form-input" required>
+                        </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Confirmar Agendamento</button>
+
+            </form>
+            
+    </div>
+    
+    <script src="../js/script.js"></script>
+    <script src="../js/perfil.js"></script>
+    <script src="../js/pets.js"></script>
+    <script src="../js/agendamentos.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html>
