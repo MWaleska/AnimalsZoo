@@ -5,6 +5,7 @@ const authRoutes = require('./routes/authRoutes');
 const petRoutes = require('./routes/petRoutes');
 const userRoutes = require('./routes/userRoutes');
 const contactRoutes = require('./routes/contactRoutes');
+const agendamentoRoutes = require('./routes/agendamentoRoutes');
 
 const app = express();
 
@@ -21,5 +22,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/pets', petRoutes);
 app.use('/api/usuarios', userRoutes);
 app.use('/api/contato', contactRoutes);
+app.use('/api/agendamentos', agendamentoRoutes);
 
 module.exports = app;
