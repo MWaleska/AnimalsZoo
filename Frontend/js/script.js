@@ -23,12 +23,12 @@ function showTab(tabId, clickedButton) {
     }
 }
 
-function toggleMobileMenu() {
-    const mobileNav = document.getElementById('mobileNav');
-    if (mobileNav) {
-        mobileNav.classList.toggle('active');
+    function toggleMobileMenu() {
+        const mobileNav = document.getElementById('mobileNav');
+        if (mobileNav) {
+            mobileNav.classList.toggle('active');
+        }
     }
-}
 
 document.addEventListener('DOMContentLoaded', function() {
     // Lógica de autenticação movida para auth.js para melhor organização
@@ -81,6 +81,82 @@ document.addEventListener('DOMContentLoaded', function() {
         menuToggle.addEventListener('click', toggleMobileMenu);
     }
     
+
+    document.addEventListener('DOMContentLoaded', () => {
+    // A função carregarAgendamentos() já deve existir neste arquivo, vamos adicionar a nova
+    if (document.getElementById('historico-lista')) {
+        carregarHistoricoAgendamentos();
+    }
+});
+
+async function carregarHistoricoAgendamentos() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        console.log('Usuário não autenticado.');
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/agendamentos', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao buscar histórico de agendamentos.');
+        }
+
+        const agendamentos = await response.json();
+        const historicoLista = document.getElementById('historico-lista');
+        
+        // Limpa conteúdo anterior
+        historicoLista.innerHTML = '';
+
+        const agendamentosHistorico = agendamentos.filter(agendamento => {
+            return agendamento.status === 'concluido' || agendamento.status === 'cancelado';
+        });
+
+        // Ordena por data, os mais recentes primeiro
+        agendamentosHistorico.sort((a, b) => new Date(b.data_agendamento) - new Date(a.data_agendamento));
+
+        if (agendamentosHistorico.length === 0) {
+            historicoLista.innerHTML = '<p>Nenhum agendamento no histórico.</p>';
+            return;
+        }
+
+        agendamentosHistorico.forEach(agendamento => {
+            const item = document.createElement('div');
+            item.classList.add('historico-item');
+            // Adiciona uma classe específica para estilização baseada no status
+            item.classList.add(agendamento.status); // será 'concluido' ou 'cancelado'
+
+            const dataFormatada = new Date(agendamento.data_agendamento).toLocaleString('pt-BR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            item.innerHTML = `
+                <p><strong>Pet:</strong> ${agendamento.pet_nome}</p>
+                <p><strong>Serviço:</strong> ${agendamento.servico}</p>
+                <p><strong>Data:</strong> ${dataFormatada}</p>
+                <p><strong>Status:</strong> <span class="status">${agendamento.status}</span></p>
+            `;
+            historicoLista.appendChild(item);
+        });
+
+    } catch (error) {
+        console.error('Erro ao carregar histórico:', error);
+        const historicoLista = document.getElementById('historico-lista');
+        if (historicoLista) {
+            historicoLista.innerHTML = '<p class="erro">Não foi possível carregar o histórico de agendamentos.</p>';
+        }
+    }
+}
     const yearSpan = document.getElementById('currentYear');
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();

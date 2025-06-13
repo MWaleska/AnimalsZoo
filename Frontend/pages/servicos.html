@@ -26,8 +26,8 @@
             <a href="dashboard.html" class="header-button header-button-dashboard">Meu Painel</a>
             <a href="#" class="header-link header-link-login logout-link">Sair</a>
         </div>
-        <button class="menu-toggle" onclick="toggleMobileMenu()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <button class="menu-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M3 18H21V16H3V18ZM3 13H21V11H3V13ZM3 6V8H21V6H3Z" fill="currentColor" />
             </svg>
         </button>
@@ -36,7 +36,7 @@
 
     <div id="mobileNav" class="mobile-nav">
         <a href="index.html" class="mobile-nav-link">Início</a>
-        <a href="servicos.html" class="mobile-nav-link">Serviços</a>
+        <a href="servicos.html" class="mobile-nav-link active">Serviços</a>
         <a href="contato.html" class="mobile-nav-link">Contato</a>
         <a href="sobre.html" class="mobile-nav-link">Sobre</a>
         <hr class="mobile-nav-divider">
@@ -46,7 +46,7 @@
         </div>
         <div id="mobile-logged-in-view" style="display: none;">
             <a href="dashboard.html" class="mobile-nav-link">Meu Painel</a>
-            <a href="#" class="mobile-nav-link logout-link">Sair</a>
+            <a href="#" class="mobile-nav-link logout-link mobile-nav-signup">Sair</a>
         </div>
     </div>
     <div class="container page-content-top-padding">
@@ -140,7 +140,7 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary service-schedule-btn">Agendar Serviço</button>
+                    <button class="btn btn-primary service-schedule-btn" data-service-name="Consulta Veterinária">Agendar Serviço</button>
                 </div>
             </div>
 
