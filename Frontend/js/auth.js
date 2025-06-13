@@ -7,39 +7,39 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileLoggedOutView = document.getElementById('mobile-logged-out-view');
     const mobileLoggedInView = document.getElementById('mobile-logged-in-view');
 
+    const headerWelcomeMsg = document.getElementById('header-welcome-message');
+    const userAvatarHeader = document.getElementById('userAvatarHeader');
+
     if (token && usuarioLogado) {
-        // Estado Logado
         if (loggedOutView) loggedOutView.style.display = 'none';
-        if (loggedInView) {
-            loggedInView.style.display = 'flex';
-            const welcomeMsg = document.getElementById('header-welcome-message');
-            if (welcomeMsg) {
-                welcomeMsg.textContent = `Olá, ${usuarioLogado.nomeCompleto.split(' ')[0]}!`;
-            }
-        }
+        if (loggedInView) loggedInView.style.display = 'flex';
         if (mobileLoggedOutView) mobileLoggedOutView.style.display = 'none';
         if (mobileLoggedInView) mobileLoggedInView.style.display = 'block';
+
+        if (headerWelcomeMsg) {
+            headerWelcomeMsg.textContent = `Olá, ${usuarioLogado.nomeCompleto.split(' ')[0]}!`;
+        }
+
+        if (userAvatarHeader && usuarioLogado.nomeCompleto) {
+            const nomes = usuarioLogado.nomeCompleto.split(' ');
+            const primeiraInicial = nomes[0] ? nomes[0][0] : '';
+            const segundaInicial = nomes[1] ? nomes[1][0] : '';
+            userAvatarHeader.textContent = `${primeiraInicial}${segundaInicial}`.toUpperCase();
+        }
+
     } else {
-        // Estado Deslogado
         if (loggedInView) loggedInView.style.display = 'none';
         if (loggedOutView) loggedOutView.style.display = 'flex';
         if (mobileLoggedInView) mobileLoggedInView.style.display = 'none';
         if (mobileLoggedOutView) mobileLoggedOutView.style.display = 'block';
     }
 
-    // --- LÓGICA DE LOGOUT CORRIGIDA ---
-    // Encontra todos os elementos com a classe '.logout-button' ou '.logout-link'
     const logoutLinks = document.querySelectorAll('.logout-button, .logout-link');
-    
     logoutLinks.forEach(link => {
         link.addEventListener('click', (event) => {
-            event.preventDefault(); // Impede a ação padrão do link
-
-            // 1. Limpa os dados de login do armazenamento do navegador
+            event.preventDefault();
             localStorage.removeItem('tokenUsuario');
             localStorage.removeItem('usuarioLogado');
-
-            // 2. Redireciona para a tela de início
             window.location.href = 'index.html'; 
         });
     });
